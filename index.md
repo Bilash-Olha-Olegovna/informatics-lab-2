@@ -18,21 +18,21 @@
 </div>
 
 <div class="grid-container">
-  <a href="theory/main-content.md" class="course-card primary-card">
+  <a href="theory/main-content.html" class="course-card primary-card">
     <div class="card-icon">📚</div>
     <h3>Теоретична база</h3>
     <p>Архітектура LLM, токенізація, галюцинації та основи машинного навчання.</p>
     <span class="btn-link">Вивчити теорію &rarr;</span>
   </a>
 
-  <a href="practice/tasks.md" class="course-card warning-card">
+  <a href="practice/tasks.html" class="course-card warning-card">
     <div class="card-icon">🛠</div>
     <h3>Практичний тренажер</h3>
     <p>Лабораторні роботи, кейси фактчекінгу та написання системних промптів.</p>
     <span class="btn-link">Почати практику &rarr;</span>
   </a>
 
-  <a href="tests/self-check.md" class="course-card success-card">
+  <a href="tests/self-check.html" class="course-card success-card">
     <div class="card-icon">✅</div>
     <h3>Система оцінювання</h3>
     <p>Інтерактивні перевірки знань та розгорнуті критерії оцінювання проєктів.</p>
@@ -52,5 +52,10 @@
     <p class="ai-output" id="aiResponse"></p>
   </div>
 </div>
+
+<footer style="margin-top: 50px; text-align: center; color: var(--text-muted); font-size: 0.9em; border-top: 1px solid var(--card-border); padding-top: 20px;">
+  <p>© 2026 Навчальний модуль з Інформатики. Розроблено для лабораторної роботи №2.</p>
+  <p>Автор: Білаш Ольга Олегівна | Powered by GitHub Pages & AI</p>
+</footer>
 
 <div id="toast-container"></div>
