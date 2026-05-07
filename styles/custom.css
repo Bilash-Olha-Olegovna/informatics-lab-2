@@ -1,72 +1,202 @@
-/* Професійний шрифт та змінні */
+/* --- CSS Змінні та Тематизація --- */
 :root {
-  --primary-color: #2563eb;
-  --accent-color: #f59e0b;
-  --bg-soft: #f8fafc;
-  --text-main: #334155;
+  --bg-main: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  --card-border: rgba(255, 255, 255, 0.5);
+  --terminal-bg: #0f172a;
 }
 
+[data-theme="dark"] {
+  --bg-main: #0f172a;
+  --bg-glass: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #60a5fa;
+  --primary-glow: rgba(96, 165, 250, 0.3);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --terminal-bg: #020617;
+}
+
+/* --- Базові налаштування --- */
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-soft);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
   color: var(--text-main);
-  max-width: 900px;
+  line-height: 1.6;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Стилізація карток з попередженнями (Callouts) */
-.info-box {
-  background: white;
-  border-left: 5px solid var(--primary-color);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0;
-  transition: transform 0.2s ease;
+/* Кастомний скроллбар */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 5px; }
+
+/* --- Прогрес-бар читання --- */
+.reading-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  width: 0%;
+  z-index: 1000;
+  transition: width 0.1s;
 }
 
-.info-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+/* --- Кнопка теми --- */
+.theme-toggle {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
+
+/* --- Glassmorphism Hero Section --- */
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: 24px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
-/* Покращення відображення коду */
-pre {
-  border-radius: 8px !important;
-  border: 1px solid #e2e8f0 !important;
-  background: #1e293b !important; 
-  padding: 1.2rem !important;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  margin: 0.5rem 0;
 }
 
-code {
-  color: #e83e8c;
-  background-color: #f1f5f9;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Fira Code', monospace;
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-/* Оптимізація зображень */
-img {
-  transition: transform 0.3s ease;
-  border-radius: 8px;
+/* --- CSS Grid для карток --- */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
-img:hover {
-  transform: scale(1.01);
-}
-
-/* Красиві посилання */
-a {
-  color: var(--primary-color);
+.course-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
   text-decoration: none;
-  transition: color 0.2s;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-a:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
+.course-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.course-card:hover::before { transform: scaleX(1); }
+
+.card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.btn-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* --- AI Terminal (Консоль) --- */
+.ai-terminal {
+  background: var(--terminal-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  margin-top: 2rem;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.terminal-header {
+  background: #1e293b;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ef4444; }
+.yellow { background: #eab308; }
+.green { background: #22c55e; }
+.terminal-title { color: #94a3b8; font-size: 0.85rem; margin-left: auto; margin-right: auto; }
+
+.terminal-body { padding: 1.5rem; color: #a7f3d0; font-size: 0.95rem; }
+.prompt-arrow { color: #ec4899; font-weight: bold; }
+.user-input { color: #f8fafc; margin-bottom: 1rem; }
+
+/* Анімація курсора */
+.cursor-blink::after {
+  content: '▋';
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* --- Спливаючі Toast-повідомлення --- */
+#toast-container {
+  position: fixed;
+  top: 20px; right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  background: #10b981;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards;
+}
+
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fadeOut { to { transform: translateY(-10px); opacity: 0; } }
