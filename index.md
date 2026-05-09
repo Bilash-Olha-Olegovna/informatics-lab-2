@@ -1,33 +1,25 @@
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Інтерактивний освітній курс з Генеративного ШІ та Промпт-інжинірингу для 10-11 класів.">
-  <title>Генеративний ШІ: Платформа майбутнього</title>
-  
+  <meta name="description" content="Найсучасніша освітня платформа про ШІ для учнів.">
+  <title>GenAI PRO | Освітня платформа</title>
   <link rel="stylesheet" href="styles/custom.css">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#2563eb">
-  
   <script src="scripts/app.js" defer></script>
 </head>
 
-<a href="#main-content" class="skip-link">Перейти до основного контенту</a>
-
-<header class="hero-section glass-panel" aria-labelledby="hero-title">
-  <div class="hero-content">
-    <div class="badge" role="status">v4.0 ENTERPRISE</div>
-    <h1 id="hero-title" class="gradient-text">Генеративний ШІ: Платформа</h1>
-    <p class="subtitle">Інтерактивний освітній простір з системою відстеження прогресу</p>
-  </div>
+<header class="hero-section glass-panel">
+  <div class="badge">v4.0 ENTERPRISE</div>
+  <h1 class="gradient-text">Генеративний ШІ: Платформа</h1>
+  <p class="subtitle">Освітній простір з інтелектуальним HUD</p>
 </header>
 
 <main id="main-content">
-  <section class="xp-dashboard" aria-label="Ваш навчальний прогрес">
-    <div style="font-weight: bold; color: var(--primary);" id="level-counter">Рівень 1</div>
-    <div class="xp-bar-container" aria-hidden="true">
-      <div class="xp-bar-fill" id="xp-bar"></div>
+  <section class="xp-dashboard glass-panel" style="margin: 20px 0; display: flex; align-items: center; padding: 20px;">
+    <div id="level-counter" style="font-weight: 900; color: var(--primary);">Рівень 1</div>
+    <div style="flex-grow: 1; height: 12px; background: var(--bg-main); margin: 0 20px; border-radius: 10px; overflow: hidden;">
+      <div id="xp-bar" style="width: 0%; height: 100%; background: var(--primary); transition: 1s;"></div>
     </div>
-    <div style="font-weight: bold; color: var(--xp-color);" id="xp-counter">0 XP</div>
+    <div id="xp-counter" style="font-weight: 900; color: #f59e0b;">0 XP</div>
   </section>
 
   <nav aria-label="Головна навігація курсу">
