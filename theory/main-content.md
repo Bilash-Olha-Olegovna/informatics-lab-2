@@ -49,15 +49,12 @@
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
 </div>
 
-<div align="center" style="margin: 30px 0;">
-  <img src="../resources/images/prompt-puzzle.png" alt="Складові ідеального промпту" width="80%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
-  <h3 style="margin-top: 40px; color: var(--primary);">🎥 Демонстрація можливостей відеогенерації</h3>
-<p>Нижче наведено приклад відео, створеного за допомогою моделі KlingAI 3.0 Omni за текстовим запитом.</p>
-
-<div align="center" style="margin: 20px 0;">
-  <video width="100%" controls style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+<div class="glass-panel" markdown="1">
+## 🎥 Візуалізація концепту
+<div class="video-wrapper" style="margin: 30px 0; border-radius: 16px; overflow: hidden; border: 2px solid var(--primary);">
+  <video width="100%" controls poster="../resources/images/hero_image.png">
     <source src="../resources/videos/ai_demo.mp4" type="video/mp4">
-    Ваш браузер не підтримує відео-тег.
+    Ваш браузер не підтримує відео.
   </video>
 </div>
 </div>
