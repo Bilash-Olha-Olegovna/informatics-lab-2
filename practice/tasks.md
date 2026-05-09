@@ -12,14 +12,14 @@
 Тут ви можете закріпити теоретичні знання на практиці. Спочатку скористайтесь нашим інтерактивним AI-аналізатором, а потім переходьте до самостійних завдань.
 
 ## 🤖 AI Prompt Evaluator (Симулятор)
-<div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 25px; border-radius: 12px; margin: 20px 0;">
-  <p style="margin-top: 0;">Напишіть ідеальний промпт за формулою <b>[Роль] + [Контекст] + [Завдання] + [Формат]</b>. Наша система проаналізує його якість.</p>
+<div class="term-card">
+  <p style="margin-top: 0; color: var(--text-main);">Напишіть ідеальний промпт за формулою <b>[Роль] + [Контекст] + [Завдання] + [Формат]</b>. Наша система проаналізує його якість.</p>
   
-  <textarea id="prompt-input" rows="4" style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--primary); background: var(--bg-main); color: var(--text-main); font-family: inherit; font-size: 1rem; resize: vertical;" placeholder="Наприклад: Дій як вчитель фізики. Для учнів 5 класу поясни закон тяжіння. Використовуй прості слова у форматі списку з 3 пунктів..."></textarea>
+  <textarea id="prompt-input" rows="4" style="width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 1rem; resize: vertical; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);" placeholder="Наприклад: Дій як вчитель фізики. Для учнів 5 класу поясни закон тяжіння. Використовуй прості слова у форматі списку з 3 пунктів..."></textarea>
   
-  <button id="evaluate-btn" style="background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1rem; transition: background 0.2s;">Оцінити промпт</button>
+  <button id="evaluate-btn" class="primary-btn" style="width: 100%; margin-top: 15px;">Оцінити промпт</button>
   
-  <div id="eval-result" style="display: none;"></div>
+  <div id="eval-result" style="display: none; margin-top: 20px;"></div>
 </div>
 
 ---
