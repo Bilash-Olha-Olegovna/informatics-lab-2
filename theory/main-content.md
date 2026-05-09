@@ -1,11 +1,6 @@
 <head>
   <link rel="stylesheet" href="../styles/custom.css">
   <script src="../scripts/app.js" defer></script>
-</head>
-
-<head>
-  <link rel="stylesheet" href="../styles/custom.css">
-  <script src="../scripts/interactive.js" defer></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script type="module">
