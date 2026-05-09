@@ -37,4 +37,30 @@
   <button class="quiz-btn" data-correct="false" data-feedback="Це помилка коду, а не галюцинація.">Системна помилка, що призводить до зависання комп'ютера.</button>
 </div>
 
+<div class="quiz-question" data-qid="q5">
+  <p class="text-adaptive"><b>5. Що відбувається, коли ви перевищуєте "Контекстне вікно" (Context Window) моделі?</b></p>
+  <button class="quiz-btn" data-correct="true" data-feedback="Пам'ять ШІ обмежена кількістю токенів.">Модель починає "забувати" початок вашої розмови.</button>
+  <button class="quiz-btn" data-correct="false" data-feedback="Це не пов'язано з підключенням.">ШІ автоматично відключається від інтернету.</button>
+  <button class="quiz-btn" data-correct="false" data-feedback="На жаль, безкоштовного переходу не буває.">Ви отримуєте безкоштовний доступ до GPT-4.</button>
+</div>
+
+<div class="quiz-question" data-qid="q6">
+  <p class="text-adaptive"><b>6. Для якого завдання краще встановити низьку "Температуру" (наприклад, 0.1)?</b></p>
+  <button class="quiz-btn" data-correct="false" data-feedback="Для творчості потрібна висока температура.">Написання креативного вірша про космос.</button>
+  <button class="quiz-btn" data-correct="true" data-feedback="Низька температура робить відповіді детермінованими і логічними.">Написання програмного коду або аналіз математичних даних.</button>
+</div>
+
+<div class="quiz-question" data-qid="q7">
+  <p class="text-adaptive"><b>7. Що таке RAG (Retrieval-Augmented Generation)?</b></p>
+  <button class="quiz-btn" data-correct="false" data-feedback="Це не антивірус.">Програма для захисту від комп'ютерних вірусів.</button>
+  <button class="quiz-btn" data-correct="false" data-feedback="Це щось інше.">Функція генерації картинок всередині текстового чату.</button>
+  <button class="quiz-btn" data-correct="true" data-feedback="Це дуже потужний спосіб зменшити галюцинації.">Механізм, де ШІ спочатку шукає інформацію у зовнішніх базах даних, а потім генерує відповідь.</button>
+</div>
+
+<div class="quiz-question" data-qid="q8">
+  <p class="text-adaptive"><b>8. В чому полягає суть техніки Few-shot prompting?</b></p>
+  <button class="quiz-btn" data-correct="true" data-feedback="Надання прикладів суттєво покращує точність відповідей.">Надання моделі 2-3 прикладів очікуваного результату перед тим, як вона почне генерувати свій.</button>
+  <button class="quiz-btn" data-correct="false" data-feedback="Ні, це не про швидкість.">Запуск ШІ на максимальній швидкості генерації.</button>
+</div>
+
 </div>

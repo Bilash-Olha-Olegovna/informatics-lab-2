@@ -58,6 +58,23 @@ Tone of Voice: надихаючий, інноваційний, але досту
 Формат виводу: таблиця з колонками [День], [Формат: Reels/Post/Story], [Теза/Сценарій] та [Заклик до дії (CTA)]."</pre>
 </div>
 
+<div class="term-card">
+  <h3 class="text-adaptive" style="margin-top: 0;">🔄 4. Зворотний інжиніринг (Reverse Prompting)</h3>
+  <p class="text-muted-adaptive"><b>Сценарій:</b> Ви знайшли ідеально написаний текст і хочете, щоб ШІ створював схожі.</p>
+  <pre style="background: var(--terminal-bg); padding: 15px; border-radius: 8px; color: #a7f3d0; white-space: pre-wrap;">"Я надам тобі ідеальний зразок тексту. Твоє завдання: 
+1. Проаналізувати його стиль, тон, словниковий запас та структуру.
+2. Написати Промпт (запит), який я зможу використати в майбутньому, щоб ти згенерував текст точнісінько в такому ж стилі.
+Ось текст для аналізу: [ВСТАВТЕ ТЕКСТ]"</pre>
+</div>
+
+<div class="term-card">
+  <h3 class="text-adaptive" style="margin-top: 0;">⚙️ 5. Структурування даних (JSON Generation)</h3>
+  <p class="text-muted-adaptive"><b>Сценарій:</b> Вам потрібні дані для інтеграції в базу даних або веб-додаток.</p>
+  <pre style="background: var(--terminal-bg); padding: 15px; border-radius: 8px; color: #a7f3d0; white-space: pre-wrap;">"Згенеруй базу даних з 5 видатних науковців у галузі штучного інтелекту. 
+Поверни результат ВИКЛЮЧНО у валідному форматі JSON без жодного додаткового тексту чи привітань.
+Структура об'єкта: { id: number, name: string, contribution: string, year: number }."</pre>
+</div>
+
 <div class="term-card" style="text-align: center; margin-top: 30px;">
   <p class="text-adaptive" style="margin: 0;"><b>💡 Порада для учнів:</b> Завжди використовуйте формулу: <code style="color: var(--primary);">Роль + Контекст + Завдання + Формат</code>.</p>
 </div>

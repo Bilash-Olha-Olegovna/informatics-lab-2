@@ -58,6 +58,31 @@
       <li>✅ Готове міні-оповідання.</li>
       <li>🎨 <b>Візуальна розмітка коду:</b> Виділіть текст: <mark style="background-color: rgba(16, 185, 129, 0.2); padding: 2px 5px; border-radius: 4px; color: var(--text-main);">зеленим фоном</mark> — текст автора (людини), а <mark style="background-color: rgba(239, 68, 68, 0.2); padding: 2px 5px; border-radius: 4px; color: var(--text-main);">червоним фоном</mark> — згенерований ШІ.</li>
       <li>📝 Есе-рефлексія (3 речення) про досвід співавторства.</li>
+      <li>📝 Есе-рефлексія (3 речення) про досвід співавторства.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="term-card">
+  <div style="display: inline-block; padding: 5px 12px; background: #8b5cf6; color: white; border-radius: 20px; font-size: 0.8em; font-weight: bold; margin-bottom: 15px;">Проєкт 3 / Груповий (3-4 учні)</div>
+  <h2 class="text-adaptive" style="margin-top: 0;">🗣 "AI-Дебати" (Critical Thinking)</h2>
+  
+  <p class="text-muted-adaptive"><b>Вектор розвитку (Компетентності):</b> Пошук аргументації, аналіз контраргументів, фактчекінг.</p>
+
+  <h4 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px;">Суть проєкту:</h4>
+  <p class="text-muted-adaptive">Група ділиться на "Захисників" та "Опонентів" тези: <i>"Штучний інтелект у школі потрібно заборонити"</i>. Кожна сторона використовує ШІ для підготовки своїх аргументів.</p>
+  
+  <ol>
+    <li>Попросіть ШІ написати 5 сильних аргументів на вашу користь (використовуйте фреймворк RACE).</li>
+    <li>Попросіть ШІ зіграти роль "Опонента" і розкритикувати ваші власні аргументи.</li>
+    <li>Знайдіть слабкі місця у критиці ШІ та підготуйте фінальну промову.</li>
+  </ol>
+
+  <div class="bg-adaptive" style="padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid var(--card-border);">
+    <b class="text-adaptive">📦 Deliverables (Форма здачі):</b>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>🎙 Усна презентація (Дебати в класі).</li>
+      <li>📄 Документ із підготовленою базою аргументів та відповідними промптами.</li>
     </ul>
   </div>
 </div>

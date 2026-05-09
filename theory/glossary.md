@@ -44,6 +44,11 @@
   </div>
 
   <div class="term-card">
+    <h4 class="text-adaptive" style="margin: 0 0 5px 0;">⚙️ Системний промпт (System Prompt)</h4>
+    <p class="text-muted-adaptive" style="margin: 0; font-size: 0.95em;">Приховані базові інструкції, які розробник задає штучному інтелекту до початку спілкування з користувачем. Визначають глобальну поведінку, обмеження та характер моделі.</p>
+  </div>
+
+  <div class="term-card">
     <h4 class="text-adaptive" style="margin: 0 0 5px 0;">🎯 Zero-shot / Few-shot Prompting</h4>
     <p class="text-muted-adaptive" style="margin: 0; font-size: 0.95em;">Техніки створення запитів. <b>Zero-shot:</b> ви просите ШІ виконати задачу без жодного прикладу. <b>Few-shot:</b> ви надаєте 2-3 приклади очікуваного результату в самому промпті для підвищення точності.</p>
   </div>
@@ -61,6 +66,11 @@
   <div class="term-card">
     <h4 class="text-adaptive" style="margin: 0 0 5px 0;">🌡 Температура (Temperature)</h4>
     <p class="text-muted-adaptive" style="margin: 0; font-size: 0.95em;">Параметр генерації LLM (від 0.0 до 2.0), що керує "креативністю" відповіді. Низька температура дає точні, детерміновані відповіді, а висока — різноманітні та творчі.</p>
+  </div>
+
+  <div class="term-card">
+    <h4 class="text-adaptive" style="margin: 0 0 5px 0;">🔀 MoE (Mixture of Experts)</h4>
+    <p class="text-muted-adaptive" style="margin: 0; font-size: 0.95em;">Архітектура нейромережі, де замість однієї велетенської моделі працює кілька спеціалізованих міні-моделей ("експертів"). На кожен запит система активує лише тих експертів, які найкраще знаються на цій темі.</p>
   </div>
 
   <div class="term-card">
