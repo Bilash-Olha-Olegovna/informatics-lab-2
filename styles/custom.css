@@ -222,3 +222,53 @@ code:hover::after {
 @keyframes fadeIn {
   to { opacity: 1; transform: translateY(-2px); }
 }
+
+/* --- Стилізація нових списків посилань на головній --- */
+.card-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1rem;
+}
+
+.card-links li {
+  margin-bottom: 0.8rem;
+}
+
+.card-links a {
+  color: var(--primary);
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.card-links a:hover {
+  transform: translateX(5px);
+  color: #ec4899;
+}
+
+/* --- 📱 Мобільна адаптивність (Медіа-запити) --- */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 1rem; /* Зменшуємо зовнішні відступи */
+  }
+  
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+  
+  .gradient-text {
+    font-size: 2.2rem; /* Зменшуємо заголовок */
+  }
+  
+  .glass-panel {
+    padding: 20px !important; /* Компактні картки на телефоні */
+  }
+  
+  .grid-container {
+    grid-template-columns: 1fr; /* Картки стають одна під одною */
+  }
+}
