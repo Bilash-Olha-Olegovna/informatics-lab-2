@@ -1,5 +1,5 @@
 /**
- * GenAI EdTech Platform Core | v4.0 ENTERPRISE
+ * GenAI EdTech Platform Core | v4.5 ENTERPRISE
  */
 (() => {
     'use strict';
@@ -22,7 +22,7 @@
             t.className = `toast toast-${type}`;
             t.innerHTML = msg;
             this.container.appendChild(t);
-            setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3000);
+            setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateY(20px)'; setTimeout(() => t.remove(), 400); }, 3000);
         }
 
         static injectCopyButtons() {
@@ -67,9 +67,19 @@
             }
             hud.innerHTML = `<span>🏆 Lvl ${this.level}</span><div class="hud-sep"></div><span>✨ ${this.xp} XP</span>`;
             
-            // Sync dashboard if on index.html
+            // Оновлення головного дашборду (XP Bar Initial Animation)
             const bar = document.getElementById('xp-bar');
-            if (bar) bar.style.width = `${this.xp % 100}%`;
+            if (bar) {
+                const progress = (this.xp % 100) + '%';
+                if (bar.style.width === '' || bar.style.width === '0%') {
+                    bar.style.width = '0%';
+                    requestAnimationFrame(() => {
+                        setTimeout(() => { bar.style.width = progress; }, 100);
+                    });
+                } else {
+                    bar.style.width = progress;
+                }
+            }
             const cnt = document.getElementById('xp-counter');
             if (cnt) cnt.innerText = `${this.xp} XP`;
         }
@@ -88,6 +98,54 @@
     }
 
     class PromptEngine {
+        static initLiveIndicator() {
+            const input = document.getElementById('prompt-input');
+            if (!input) return;
+
+            // Створення візуальних "пігулок"
+            const liveBar = document.createElement('div');
+            liveBar.id = 'live-strength';
+            liveBar.style.cssText = 'display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;';
+            const pills = [
+                { id: 'pill-role', label: '🎭 Роль' },
+                { id: 'pill-ctx',  label: '📍 Контекст' },
+                { id: 'pill-task', label: '✏️ Завдання' },
+                { id: 'pill-fmt',  label: '📋 Формат' }
+            ];
+            pills.forEach(p => {
+                const pill = document.createElement('span');
+                pill.id = p.id;
+                pill.innerText = p.label;
+                pill.style.cssText = 'font-size:0.85rem; font-weight:600; padding:6px 12px; border-radius:20px; border:1px solid var(--card-border); color:var(--text-muted); background:var(--card-bg); transition:all 0.3s ease;';
+                liveBar.appendChild(pill);
+            });
+            input.parentNode.insertBefore(liveBar, input.nextSibling);
+
+            // Перевірка в реальному часі
+            input.addEventListener('input', () => {
+                const t = input.value.toLowerCase();
+                const rolePattern = /(дій як|уяви себе|ти є|ти —|ти - |виступи як|поводь себе як|ролі|експерт|вчитель)/;
+                const ctxPattern  = /(для учн|для студент|для дітей|для початківц|для фахівц|тому що|оскільки|адже|контекст:|ситуація:)/;
+                const taskPattern = /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|порівняй|опиши|сформулюй|згенеруй)/;
+                const fmtPattern  = /(формат|список|таблиц|речен|абзац|пунктів|кроків|секцій)/;
+
+                const checks = [
+                    { id: 'pill-role', ok: rolePattern.test(t) },
+                    { id: 'pill-ctx',  ok: ctxPattern.test(t)  },
+                    { id: 'pill-task', ok: taskPattern.test(t) },
+                    { id: 'pill-fmt',  ok: fmtPattern.test(t)  }
+                ];
+                
+                checks.forEach(c => {
+                    const el = document.getElementById(c.id);
+                    if (!el) return;
+                    el.style.background = c.ok ? 'rgba(16,185,129,0.15)' : 'var(--card-bg)';
+                    el.style.borderColor = c.ok ? 'var(--success)' : 'var(--card-border)';
+                    el.style.color       = c.ok ? 'var(--success)'  : 'var(--text-muted)';
+                });
+            });
+        }
+
         static eval() {
             const input = document.getElementById('prompt-input');
             const res = document.getElementById('eval-result');
@@ -97,32 +155,32 @@
             if (val.length < 15) { UI.toast('Занадто короткий запит!', 'error'); return; }
 
             const criteria = [
-                { reg: /(дій як|уяви себе|ти є|ти —|ти - |виступи як|поводь себе як)/i, msg: '🎭 Роль' },
+                { reg: /(дій як|уяви себе|ти є|ти —|ти - |виступи як|поводь себе як|ролі|експерт|вчитель)/i, msg: '🎭 Роль' },
                 { reg: /(для учн|для студент|для дітей|для початківц|для фахівц|тому що|оскільки|адже|контекст:|ситуація:)/i, msg: '🌍 Контекст' },
                 { reg: /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|порівняй|опиши|сформулюй|згенеруй)/i, msg: '🎯 Завдання' },
-                { reg: /(формат|список|таблиц|речен|абзац)/i, msg: '📋 Формат' }
+                { reg: /(формат|список|таблиц|речен|абзац|пунктів|кроків|секцій)/i, msg: '📋 Формат' }
             ];
 
             let score = 0;
-            let html = '<ul>';
+            let html = '<ul style="padding-left:0; list-style:none;">';
             criteria.forEach(c => {
                 const ok = c.reg.test(val);
                 if (ok) score += 25;
-                html += `<li style="color: ${ok ? 'var(--success)' : 'var(--danger)'}">${ok ? '✅' : '❌'} ${c.msg}</li>`;
+                html += `<li style="margin-bottom:8px; font-weight:500; color: ${ok ? 'var(--success)' : 'var(--danger)'}">${ok ? '✅ Знайдено:' : '❌ Відсутньо:'} ${c.msg}</li>`;
             });
             html += '</ul>';
 
             res.style.display = 'block';
-            res.innerHTML = `<h3>Оцінка: ${score}/100</h3>${html}`;
+            res.className = 'prompt-result glass-panel';
+            res.innerHTML = `<h3 style="margin-top:0; color: ${score === 100 ? 'var(--success)' : 'var(--xp-color)'}">Оцінка: ${score}/100</h3>${html}`;
             
-            // Запобігаємо нескінченному нарахуванню XP
             if (score === 100 && !Storage.get('ach_master', false)) {
                 Storage.set('ach_master', true);
                 window.engine.progress.addXP(50);
                 UI.toast('🏆 Майстер Промптів! +50 XP', 'success');
                 UI.fireConfetti();
             } else if (score === 100) {
-                UI.toast('✅ Ідеальний промпт! Досягнення вже отримано.', 'success');
+                UI.toast('✅ Ідеальний промпт!', 'success');
             }
         }
     }
@@ -154,13 +212,24 @@
                 const parent = btn.closest('.quiz-question');
                 if (parent.dataset.done) return;
                 parent.dataset.done = 'true';
+                
+                const allBtns = parent.querySelectorAll('.quiz-btn');
+                allBtns.forEach(b => b.disabled = true); // Блокуємо інші кнопки
+
                 const correct = btn.dataset.correct === 'true';
                 btn.classList.add(correct ? 'correct' : 'wrong');
-                if (correct) window.engine.progress.addXP(20);
-                else parent.querySelector('[data-correct="true"]').classList.add('correct');
+                if (correct) {
+                    window.engine.progress.addXP(20);
+                    UI.toast('✅ Правильно! +20 XP', 'success');
+                } else {
+                    parent.querySelector('[data-correct="true"]').classList.add('correct');
+                    UI.toast('❌ Відповідь неправильна', 'error');
+                }
             };
         });
 
+        // Prompt Simulator
         document.getElementById('evaluate-btn')?.addEventListener('click', () => PromptEngine.eval());
+        PromptEngine.initLiveIndicator();
     });
 })();
