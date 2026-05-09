@@ -1,16 +1,22 @@
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний освітній курс з Генеративного ШІ та Промпт-інжинірингу для 10-11 класів.">
+  <title>Генеративний ШІ: Платформа майбутнього</title>
+  
   <link rel="stylesheet" href="styles/custom.css">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2563eb">
+  
   <script src="scripts/app.js" defer></script>
 </head>
 
 <a href="#main-content" class="skip-link">Перейти до основного контенту</a>
 
-<header class="hero-section glass-panel">
+<header class="hero-section glass-panel" aria-labelledby="hero-title">
   <div class="hero-content">
-    <div class="badge" role="status">v3.0 ENTERPRISE</div>
-    <h1 class="gradient-text">Генеративний ШІ: Платформа</h1>
+    <div class="badge" role="status">v4.0 ENTERPRISE</div>
+    <h1 id="hero-title" class="gradient-text">Генеративний ШІ: Платформа</h1>
     <p class="subtitle">Інтерактивний освітній простір з системою відстеження прогресу</p>
   </div>
 </header>
