@@ -1,11 +1,17 @@
 <head>
   <link rel="stylesheet" href="../styles/custom.css">
   <script src="../scripts/interactive.js" defer></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  </script>
 </head>
 
 <a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
 
-<div class="glass-panel" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
+<div class="glass-panel" markdown="1" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
 
 # 🧠 Теоретичний блок: Як працює генеративний ШІ?
 
@@ -18,9 +24,11 @@
 1. ⚙️ **Правиловий ШІ (Символьний):** Працює за жорстко заданими правилами *"Якщо -> Тоді"*.
 2. 📊 **Машинне навчання (ML):** Система сама знаходить закономірності у великих масивах даних.
 3. 🎨 **Генеративний ШІ (GenAI):** Здатний створювати новий, унікальний контент (текст, зображення, код, музику) на основі вивчених шаблонів.
+
 <div align="center" style="margin: 30px 0;">
   <img src="../resources/images/evolution.png" alt="Еволюція ШІ" width="100%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
 </div>
+
 ---
 
 ## 📚 Великі мовні моделі (LLM)
@@ -40,6 +48,7 @@
 <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; margin: 20px 0;">
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
 </div>
+
 <div align="center" style="margin: 30px 0;">
   <img src="../resources/images/prompt-puzzle.png" alt="Складові ідеального промпту" width="80%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
 </div>
@@ -56,6 +65,7 @@
 $$\sigma(\mathbf{z})_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}}$$
 
 ### 🤖 Алгоритм генерації (Блок-схема)
+
 ```mermaid
 graph LR
     A[Промпт користувача] --> B{Токенізація}
