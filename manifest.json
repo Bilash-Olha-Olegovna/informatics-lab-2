@@ -1,0 +1,21 @@
+{
+  "name": "GenAI Course PRO",
+  "short_name": "GenAI PRO",
+  "description": "Інтерактивна платформа для вивчення генеративного ШІ",
+  "start_url": "/informatics-lab-2/index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "resources/images/hero_image.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "resources/images/hero_image.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
