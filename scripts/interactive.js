@@ -96,25 +96,49 @@
 
     // --- 5. AI Terminal Typewriter Effect ---
     const TerminalSimulator = {
-        text: "ШІ (Штучний Інтелект) — це комп'ютерна система, здатна імітувати когнітивні функції людини. Генеративний ШІ не просто шукає інформацію, він створює новий контент (тексти, код, зображення) на основі ймовірностей та патернів, знайдених у навчальних даних. [Генерацію завершено]",
-        index: 0,
-        speed: 30, // ms per char
+        responses: {
+            "привіт": "Привіт! Я твій ШІ-асистент. Чим можу допомогти?",
+            "що таке ші": "ШІ — це системи, що імітують людський інтелект для виконання завдань.",
+            "хто автор": "Цей модуль розробила Білаш Ольга Олегівна.",
+            "курс": "Цей курс навчить тебе майстерності промпт-інжинірингу!"
+        },
         
         init() {
             if(!DOM.aiResponse) return;
-            DOM.aiResponse.classList.add('cursor-blink');
-            // Delay start for dramatic effect
-            setTimeout(() => this.type(), 1500);
+            this.type("Вітаю в консолі керування ШІ. Спробуй написати 'Привіт' або 'Що таке ШІ'...");
+            this.setupInput();
         },
-        
-        type() {
-            if (this.index < this.text.length) {
-                DOM.aiResponse.innerHTML += this.text.charAt(this.index);
-                this.index++;
-                setTimeout(() => this.type(), this.speed);
-            } else {
-                DOM.aiResponse.classList.remove('cursor-blink');
-            }
+
+        setupInput() {
+            const inputSpan = document.querySelector('.typing-user');
+            if(!inputSpan) return;
+            
+            inputSpan.setAttribute('contenteditable', 'true');
+            inputSpan.style.borderBottom = '1px dashed #ec4899';
+            
+            inputSpan.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = inputSpan.innerText.toLowerCase().trim();
+                    const response = this.responses[query] || "Цікавий запит! Спробуй сформулювати його за формулою Роль+Завдання.";
+                    DOM.aiResponse.innerHTML = "";
+                    this.type(response);
+                    inputSpan.innerText = "";
+                }
+            });
+        },
+
+        type(text) {
+            let i = 0;
+            DOM.aiResponse.classList.add('cursor-blink');
+            const interval = setInterval(() => {
+                DOM.aiResponse.innerHTML += text.charAt(i);
+                i++;
+                if (i >= text.length) {
+                    clearInterval(interval);
+                    DOM.aiResponse.classList.remove('cursor-blink');
+                }
+            }, 30;
         }
     };
 
