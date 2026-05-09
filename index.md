@@ -18,26 +18,46 @@
 </div>
 
 <div class="grid-container">
-  <a href="theory/main-content.html" class="course-card primary-card">
+  <div class="course-card primary-card">
     <div class="card-icon">📚</div>
     <h3>Теоретична база</h3>
-    <p>Архітектура LLM, токенізація, галюцинації та основи машинного навчання.</p>
-    <span class="btn-link">Вивчити теорію &rarr;</span>
-  </a>
+    <p>Архітектура LLM, галюцинації та основи машинного навчання.</p>
+    <ul class="card-links">
+      <li><a href="theory/main-content.html">👉 Як працює ШІ? (База)</a></li>
+      <li><a href="theory/examples.html">👉 Приклади промптів</a></li>
+      <li><a href="theory/glossary.html">👉 Глосарій термінів</a></li>
+    </ul>
+  </div>
 
-  <a href="practice/tasks.html" class="course-card warning-card">
+  <div class="course-card warning-card">
     <div class="card-icon">🛠</div>
     <h3>Практичний тренажер</h3>
-    <p>Лабораторні роботи, кейси фактчекінгу та написання системних промптів.</p>
-    <span class="btn-link">Почати практику &rarr;</span>
-  </a>
+    <p>Лабораторні роботи, кейси та написання системних промптів.</p>
+    <ul class="card-links">
+      <li><a href="practice/tasks.html">👉 Тренажер промпт-інжинірингу</a></li>
+      <li><a href="practice/labs.html">👉 Аналітичні кейси (Фактчекінг)</a></li>
+      <li><a href="practice/projects.html">👉 Творчі проєкти (PBL)</a></li>
+    </ul>
+  </div>
 
-  <a href="tests/self-check.html" class="course-card success-card">
+  <div class="course-card success-card">
     <div class="card-icon">✅</div>
     <h3>Система оцінювання</h3>
-    <p>Інтерактивні перевірки знань та розгорнуті критерії оцінювання проєктів.</p>
-    <span class="btn-link">Скласти тест &rarr;</span>
-  </a>
+    <p>Інтерактивні перевірки знань та критерії оцінювання.</p>
+    <ul class="card-links">
+      <li><a href="tests/self-check.html">👉 Інтерактивний тест</a></li>
+      <li><a href="tests/assessment.html">👉 Рубрикатор (Критерії оцінки)</a></li>
+    </ul>
+  </div>
+
+  <div class="course-card" style="border-left-color: #ec4899;">
+    <div class="card-icon">🔗</div>
+    <h3>Корисні ресурси</h3>
+    <p>Добірка нейромереж та матеріалів для самостійного вивчення.</p>
+    <ul class="card-links">
+      <li><a href="resources/links.html" style="color: #ec4899;">👉 База ШІ-інструментів</a></li>
+    </ul>
+  </div>
 </div>
 
 <div class="ai-terminal">
