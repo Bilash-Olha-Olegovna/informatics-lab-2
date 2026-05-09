@@ -55,14 +55,23 @@
           <li><a href="tests/assessment.html">👉 Критерії оцінки</a></li>
         </ul>
       </section>
+
+      <section class="course-card" style="border-left-color: #ec4899;">
+        <h2 class="card-icon" aria-hidden="true">🔗</h2>
+        <h3>Модуль 4: Корисні ресурси</h3>
+        <p>Добірка нейромереж та матеріалів для самостійного вивчення.</p>
+        <ul class="card-links" aria-label="Посилання модуля 4">
+          <li><a href="resources/links.html" style="color: #ec4899;">👉 База ШІ-інструментів</a></li>
+        </ul>
+      </section>
     </div>
   </nav>
 
-  <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
-    <span class="icon">🌙</span>
-  </button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">🌙</button>
 </main>
 
 <footer style="margin-top: 50px; text-align: center; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px;" role="contentinfo">
+  <p>© 2026 Enterprise EdTech Platform | Побудовано для Лабораторної №2</p>
+</footer>
   <p>© 2026 Enterprise EdTech Platform | Побудовано для Лабораторної №2</p>
 </footer>
