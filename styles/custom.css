@@ -82,3 +82,42 @@ pre { position: relative; padding: 20px; background: var(--terminal-bg) !importa
   background: rgba(255,255,255,0.1); border: 1px solid var(--card-border);
   color: white; border-radius: 4px; cursor: pointer; font-size: 0.8rem;
 }
+
+/* === КРАСИВА КНОПКА ТЕМИ (ВІДНОВЛЕНО) === */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--primary);
+  color: var(--text-main);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15) rotate(15deg);
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 80px; /* Піднімаємо над HUD на телефонах, якщо вони накладаються */
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+}
