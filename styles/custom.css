@@ -213,22 +213,35 @@ tbody tr:last-child td {
   background: var(--card-bg);
 }
 
-/* Explicit Dark Mode Overrides for Tables (User request: readable text on white table) */
+/* Explicit Dark Mode Overrides for Tables */
 [data-theme="dark"] table,
 [data-theme="dark"] .enterprise-table {
-  background: #ffffff !important;
-  color: #1e3a8a !important; /* Deep blue text */
+  background: rgba(30, 41, 59, 0.7) !important;
+  color: #f8fafc !important; 
 }
 [data-theme="dark"] th {
-  background: #f1f5f9 !important;
-  color: #1d4ed8 !important;
-  border-bottom: 2px solid #cbd5e1 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #60a5fa !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
 }
 [data-theme="dark"] td {
-  border-bottom: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 [data-theme="dark"] tbody tr:hover {
-  background-color: #e2e8f0 !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Mermaid Diagram Fixes */
+.mermaid {
+  color: #f8fafc !important;
+}
+.mermaid text, .mermaid tspan, .nodeLabel {
+  fill: #f8fafc !important;
+  color: #f8fafc !important;
+}
+.mermaid .edgeLabel {
+  background-color: var(--terminal-bg) !important;
+  color: #f8fafc !important;
 }
 
 /* Custom Content Blocks & Adaptive Utilities */
