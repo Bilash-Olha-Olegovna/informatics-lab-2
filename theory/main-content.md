@@ -40,6 +40,9 @@
 <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; margin: 20px 0;">
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
 </div>
+<div align="center" style="margin: 30px 0;">
+  <img src="../resources/images/prompt-puzzle.png" alt="Складові ідеального промпту" width="80%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+</div>
 
 * ❌ **Поганий промпт:** *"Напиши про космос."*
 * ✅ **Хороший промпт:** *"Дій як вчитель астрономії (Роль). Учням 10 класу складно зрозуміти чорні діри (Контекст). Поясни, що таке горизонт подій (Завдання). Використовуй прості аналогії з побуту та маркований список (Формат)."*
