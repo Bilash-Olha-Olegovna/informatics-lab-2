@@ -153,6 +153,41 @@
         }
     };
 
+    // --- Логіка інтерактивного тесту ---
+window.checkAnswer = function(element, isCorrect, feedback) {
+    const parent = element.parentElement;
+    const options = parent.querySelectorAll('.quiz-option');
+    
+    // Блокуємо інші варіанти
+    options.forEach(opt => opt.style.pointerEvents = 'none');
+    
+    if (isCorrect) {
+        element.classList.add('correct');
+        Toast.show("Правильно! " + feedback);
+    } else {
+        element.classList.add('wrong');
+        Toast.show("Неправильно. Спробуй ще раз!");
+    }
+};
+
+// Оновлений термінал з введенням тексту
+const inputSpan = document.querySelector('.typing-user');
+if(inputSpan) {
+    inputSpan.setAttribute('contenteditable', 'true');
+    inputSpan.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            const val = inputSpan.innerText.toLowerCase();
+            let resp = "Цікавий запит! Спробуй запитати про 'ШІ' або 'автора'.";
+            if(val.includes("привіт")) resp = "Привіт! Готовий до навчання?";
+            if(val.includes("ші")) resp = "ШІ — це майбутнє, яке ми будуємо сьогодні.";
+            DOM.aiResponse.innerHTML = "";
+            TerminalSimulator.type(resp);
+            inputSpan.innerText = "";
+        }
+    });
+}
+    
     // Boot the app
     App.start();
 
