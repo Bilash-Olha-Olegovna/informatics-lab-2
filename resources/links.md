@@ -39,14 +39,14 @@
   </a>
 </div>
 
-<h3 style="margin-top: 40px; color: #8b5cf6; border-bottom: 2px solid #8b5cf6; padding-bottom: 10px;">🎥 Генерація відео</h3>
+<h3 style="margin-top: 40px; color: #8b5cf6; border-bottom: 2px solid #8b5cf6; padding-bottom: 10px;">🎥 Генерація відео (Новинка)</h3>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
   <a href="https://lumalabs.ai/dream-machine" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
     <b>Luma Dream Machine</b><br>
     <span style="font-size: 0.85em; color: var(--text-muted);">Безкоштовна та дуже якісна генерація відео з тексту або фотографій.</span>
   </a>
   <a href="https://runwayml.com/" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-    <b>Runway (Gen-2 / Gen-3)</b><br>
+    <b>Runway (Gen-3)</b><br>
     <span style="font-size: 0.85em; color: var(--text-muted);">Професійний інструмент для створення кінематографічного відеоконтенту.</span>
   </a>
   <a href="https://pika.art/" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -59,7 +59,7 @@
 <div style="margin-top: 15px;">
   <a href="https://www.promptingguide.ai/" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
     <b>Prompt Engineering Guide</b><br>
-    <span style="font-size: 0.85em; color: var(--text-muted);">Найповніша відкрита база знань з написання промптів (міжнародна версія).</span>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Найповніша відкрита база знань з написання промптів (Міжнародна версія).</span>
   </a>
 </div>
 
