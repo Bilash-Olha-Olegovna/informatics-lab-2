@@ -143,18 +143,19 @@ main, .hero-section { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwa
 .card-links a::after { content: '→'; font-size: 1.1em; transition: transform 0.2s; }
 .card-links a:hover::after { transform: translateX(4px); }
 
-/* Premium Glassmorphism */
+/* Premium Glassmorphism (Vercel/Apple Style) */
 .glass-panel { 
   background: var(--bg-glass) !important; 
-  backdrop-filter: blur(24px) saturate(180%); 
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(200%); 
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
   border: 1px solid var(--card-border); 
-  border-radius: 28px; 
-  padding: clamp(2rem, 5vw, 3.5rem); 
+  border-radius: 32px; 
+  padding: clamp(2rem, 5vw, 4rem); 
   box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 10px 15px -3px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1); 
+    0 10px 40px -10px rgba(0, 0, 0, 0.08),
+    0 4px 10px -4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 20px rgba(255, 255, 255, 0.05); 
 }
 
 /* Content Typography (Markdown support) */

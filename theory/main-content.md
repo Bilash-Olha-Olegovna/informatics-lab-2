@@ -28,7 +28,7 @@
 3. 🎨 **Генеративний ШІ (GenAI):** Здатний створювати новий, унікальний контент (текст, зображення, код, музику) на основі вивчених шаблонів.
 
 <div align="center" style="margin: 30px 0;">
-  <img src="../resources/images/evolution.png" alt="Еволюція ШІ" width="100%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+  <img src="../resources/images/evolution.png" alt="Еволюція ШІ" width="100%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
 </div>
 
 ---
@@ -44,11 +44,19 @@
   <p style="margin-bottom: 0;">Оскільки ШІ лише математично вгадує слова, він іноді може впевнено видавати абсолютно неправдиву інформацію. Це небезпечне явище називається <b>галюцинацією ШІ</b> і вимагає обов'язкового фактчекінгу.</p>
 </div>
 
+<div align="center" style="margin: 30px 0;">
+  <img src="../resources/images/hallucination.png" alt="Галюцинації ШІ" width="100%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+</div>
+
 ## ✍️ Основи промпт-інжинірингу
 **Промпт** (запит) — це текст, який ви надсилаєте штучному інтелекту, щоб отримати відповідь. 
 
 <div class="info-box" style="text-align: center;">
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <img src="../resources/images/prompt-puzzle.png" alt="Формула промпту" width="100%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
 </div>
 
 * ❌ **Поганий промпт:** *"Напиши про космос."*
@@ -70,3 +78,21 @@ graph LR
     C --> D[Декодування тексту]
     D --> E[Фінальна відповідь]
     style C fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+<div align="center" style="margin: 30px 0;">
+  <img src="../resources/images/loop.png" alt="Цикл LLM" width="100%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+</div>
+
+</div>
+
+<!-- Виходимо з markdown-контейнера для чистого HTML -->
+<div class="term-card" style="text-align: center; margin-top: 40px; padding: 30px; border-radius: 32px;">
+  <h3 style="color: var(--text-main); margin-top: 0; margin-bottom: 25px; font-size: 1.8rem;">🎬 Демонстрація роботи ШІ</h3>
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; border: 1px solid var(--card-border); box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+    <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; border-radius: 20px;">
+      <source src="../resources/videos/ai_demo.mp4" type="video/mp4">
+      Ваш браузер не підтримує відео.
+    </video>
+  </div>
+</div>

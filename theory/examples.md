@@ -3,21 +3,21 @@
   <script src="../scripts/app.js" defer></script>
 </head>
 
-<a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
+<a href="../index.html" class="btn-back">← Повернутися на головну</a>
 
-<div class="glass-panel" markdown="1" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
+<div class="glass-panel" markdown="1">
 
 # 💡 Бібліотека промптів: Приклади та аналіз
 
 У цьому розділі наведено порівняльний аналіз запитів до Великих мовних моделей (LLM). 
 
-<div style="background: #1e293b; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px;">
-  <b>🏆 Головне правило:</b> ШІ відповідає настільки якісно, наскільки якісно ви його запитуєте.
+<div class="info-box">
+  <p style="margin: 0; color: var(--text-main);"><b>🏆 Головне правило:</b> ШІ відповідає настільки якісно, наскільки якісно ви його запитуєте.</p>
 </div>
 
 ## Порівняльна таблиця ефективності
 
-<div markdown="1" style="overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px; padding: 10px;">
+<div class="table-container" markdown="1">
 
 | ❌ Базовий (поганий) запит | ✅ Професійний запит (Промпт-інжиніринг) | 🔍 Аналіз змін |
 | :--- | :--- | :--- |
@@ -28,8 +28,8 @@
 
 </div>
 
-<div style="margin-top: 30px; text-align: center;">
-  <p><b>💡 Порада для учнів:</b> Завжди використовуйте формулу: <code>Роль + Контекст + Завдання + Формат</code>.</p>
+<div class="term-card" style="text-align: center; margin-top: 30px;">
+  <p style="margin: 0; color: var(--text-main);"><b>💡 Порада для учнів:</b> Завжди використовуйте формулу: <code style="color: var(--primary);">Роль + Контекст + Завдання + Формат</code>.</p>
 </div>
 
 </div>
