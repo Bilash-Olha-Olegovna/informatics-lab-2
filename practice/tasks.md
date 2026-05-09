@@ -3,65 +3,46 @@
   <script src="../scripts/app.js" defer></script>
 </head>
 
-<a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
+<a href="../index.html" class="btn-back">← Повернутися на головну</a>
 
-<div class="glass-panel" markdown="1" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
+<div class="glass-panel" markdown="1">
 
-# 🏋️ Тренажер промпт-інжинірингу: Рівні майстерності
+# 🛠 Практичний тренажер: Промпт-інжиніринг
 
-> **Інструкція:** Завдання виконуються лінійно (від простого до складного). Ваше завдання — навчитися керувати контекстним вікном моделі. Усі артефакти зберігайте у цифровий звіт.
+Тут ви можете закріпити теоретичні знання на практиці. Спочатку скористайтесь нашим інтерактивним AI-аналізатором, а потім переходьте до самостійних завдань.
+
+## 🤖 AI Prompt Evaluator (Симулятор)
+<div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 25px; border-radius: 12px; margin: 20px 0;">
+  <p style="margin-top: 0;">Напишіть ідеальний промпт за формулою <b>[Роль] + [Контекст] + [Завдання] + [Формат]</b>. Наша система проаналізує його якість.</p>
+  
+  <textarea id="prompt-input" rows="4" style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--primary); background: var(--bg-main); color: var(--text-main); font-family: inherit; font-size: 1rem; resize: vertical;" placeholder="Наприклад: Дій як вчитель фізики. Для учнів 5 класу поясни закон тяжіння. Використовуй прості слова у форматі списку з 3 пунктів..."></textarea>
+  
+  <button id="evaluate-btn" style="background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1rem; transition: background 0.2s;">Оцінити промпт</button>
+  
+  <div id="eval-result" style="display: none;"></div>
+</div>
 
 ---
 
-<div style="display: flex; flex-direction: column; gap: 30px;">
+## Завдання для самостійної роботи (в ChatGPT, Claude або Gemini)
 
-  <div style="border: 2px solid #22c55e; border-radius: 12px; padding: 25px; position: relative; background: white;">
-    <div style="position: absolute; top: -15px; left: 20px; background: #22c55e; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(34,197,94,0.3);">🟢 Рівень I: Базовий</div>
-    
-    <h3 style="margin-top: 15px; color: #166534;">Контроль обсягу та лексикону</h3>
-    <p style="color: var(--text-muted); font-size: 0.9em;">⏱ Орієнтовний час: 10 хв</p>
-    
-    <p><b>Завдання:</b> Навчити ШІ писати строго в заданих рамках.</p>
-    <ol>
-      <li>Напишіть запит: <code>Поясни, що таке комп'ютерний вірус</code>. Оцініть обсяг тексту.</li>
-      <li><b>Оптимізація:</b> Додайте жорсткі параметри: <code>...Твоя відповідь має складатися рівно з 3 речень і не містити жодних складних технічних термінів.</code></li>
-    </ol>
-    <div style="background: #f0fdf4; padding: 10px 15px; border-radius: 6px; border-left: 4px solid #22c55e;">
-      <b>🎯 Критерій успіху:</b> Відповідь ідеально відповідає математичним обмеженням (3 речення).
-    </div>
-  </div>
+### Рівень I: Базовий (Генерація ідей)
+**Завдання:** Використайте ШІ для мозкового штурму.
+1. Попросіть ШІ згенерувати 5 ідей для подарунка на день народження друга, який захоплюється комп'ютерними іграми та велоспортом.
+2. Проаналізуйте отриманий результат. Чи врахував ШІ обидва захоплення?
 
-  <div style="border: 2px solid #f59e0b; border-radius: 12px; padding: 25px; position: relative; background: white;">
-    <div style="position: absolute; top: -15px; left: 20px; background: #f59e0b; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(245,158,11,0.3);">🟡 Рівень II: Середній</div>
-    
-    <h3 style="margin-top: 15px; color: #92400e;">Робота з "Persona" (Ролями) та Аудиторією</h3>
-    <p style="color: var(--text-muted); font-size: 0.9em;">⏱ Орієнтовний час: 15 хв</p>
-    
-    <p><b>Завдання:</b> Адаптувати науковий матеріал під різні когнітивні рівні.</p>
-    <ol>
-      <li><b>Запит 1:</b> <code>Дій як професор фізики. Згенеруй науковий опис закону Архімеда з використанням академічної термінології.</code></li>
-      <li><b>Запит 2 (в тому ж чаті):</b> <code>А тепер перепиши цей текст так, ніби ти пояснюєш його 5-річній дитині. Використовуй прості аналогії, наприклад, з іграшками у ванній.</code></li>
-    </ol>
-    <div style="background: #fffbeb; padding: 10px 15px; border-radius: 6px; border-left: 4px solid #f59e0b;">
-      <b>🎯 Критерій успіху:</b> Наявність двох кардинально різних за лексикою та стилем текстів, що пояснюють один і той самий фізичний закон.
-    </div>
-  </div>
+### Рівень II: Середній (Робота з ролями)
+**Завдання:** Порівняйте відповіді від різних "персонажів".
+1. Запитайте: `Поясни, що таке блокчейн`.
+2. Відкрийте новий чат і запитайте: `Дій як вчитель молодших класів. Поясни, що таке блокчейн на прикладі конструктора LEGO`.
+3. Зробіть висновок, як зміна ролі впливає на складність тексту.
 
-  <div style="border: 2px solid #3b82f6; border-radius: 12px; padding: 25px; position: relative; background: white;">
-    <div style="position: absolute; top: -15px; left: 20px; background: #3b82f6; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(59,130,246,0.3);">🔵 Рівень III: Advanced</div>
-    
-    <h3 style="margin-top: 15px; color: #1e3a8a;">Ланцюжок міркувань (Chain of Thought)</h3>
-    <p style="color: var(--text-muted); font-size: 0.9em;">⏱ Орієнтовний час: 20 хв</p>
-    
-    <p><b>Завдання:</b> Змусити ШІ "думати" покроково, щоб уникнути логічних галюцинацій у складних задачах.</p>
-    <ol>
-      <li>Знайдіть складну логічну або алгоритмічну задачу з олімпіади.</li>
-      <li>Створіть фреймворк-запит: <br><code>Ось умова задачі: [вставити умову]. Увага: Не пиши одразу фінальну відповідь. Спочатку поясни своє рішення крок за кроком (step-by-step), розпиши логіку міркувань, і лише після цього зроби фінальний висновок.</code></li>
-    </ol>
-    <div style="background: #eff6ff; padding: 10px 15px; border-radius: 6px; border-left: 4px solid #3b82f6;">
-      <b>🎯 Критерій успіху:</b> ШІ генерує розгорнутий алгоритм рішення (лог міркувань), який дозволяє людині-аудитору перевірити кожну математичну чи логічну дію моделі.
-    </div>
-  </div>
+### Рівень III: Advanced (Форматування та обмеження)
+**Завдання:** Отримайте структуровані дані.
+Створіть запит, який відповідає таким жорстким умовам:
+* **Роль:** Фітнес-тренер
+* **Завдання:** Скласти план тренувань для початківця
+* **Контекст:** Тренування вдома, без інвентарю, 3 рази на тиждень
+* **Формат:** Таблиця (Дні тижня / Вправи / Кількість підходів)
 
-</div>
 </div>
