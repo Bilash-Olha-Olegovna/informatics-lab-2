@@ -3,15 +3,17 @@
   <script src="../scripts/app.js" defer></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    });
   </script>
 </head>
 
-<a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
+<a href="../index.html" class="btn-back">← Повернутися на головну</a>
 
-<div class="glass-panel" markdown="1" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
+<div class="glass-panel" markdown="1">
 
 # 🧠 Теоретичний блок: Як працює генеративний ШІ?
 
@@ -49,30 +51,8 @@
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
 </div>
 
-<div class="glass-panel" markdown="1">
-## 🎥 Візуалізація концепту
-<div class="video-wrapper" style="margin: 30px 0; border-radius: 16px; overflow: hidden; border: 2px solid var(--primary);">
-  <video width="100%" controls poster="../resources/images/hero_image.png">
-    <source src="../resources/videos/ai_demo.mp4" type="video/mp4">
-    Ваш браузер не підтримує відео.
-  </video>
-</div>
-</div>
-
 * ❌ **Поганий промпт:** *"Напиши про космос."*
 * ✅ **Хороший промпт:** *"Дій як вчитель астрономії (Роль). Учням 10 класу складно зрозуміти чорні діри (Контекст). Поясни, що таке горизонт подій (Завдання). Використовуй прості аналогії з побуту та маркований список (Формат)."*
-
-<div style="background-color: rgba(59, 130, 246, 0.05); padding: 25px; border-radius: 12px; margin: 30px 0; border: 1px solid var(--card-border);">
-  <h2 style="margin-top: 0;">🚀 ШІ та майбутнє професій</h2>
-  <p>Існує міф, що ШІ замінить людей. Проте реальність інша: <b>люди, які використовують ШІ, замінять тих, хто його не використовує.</b></p>
-  
-  <h4 style="color: var(--primary);">Ключові навички майбутнього (Human-AI Collaboration):</h4>
-  <ul>
-    <li><b>Критичне оцінювання:</b> Здатність відрізнити якісний контент від галюцинацій.</li>
-    <li><b>Креативне кураторство:</b> Вміння об'єднувати ідеї ШІ у фінальний продукт.</li>
-    <li><b>Етична відповідальність:</b> Розуміння того, де використання ШІ є доречним, а де — порушує авторські права.</li>
-  </ul>
-</div>
 
 ---
 
@@ -83,7 +63,6 @@
 $$\sigma(\mathbf{z})_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}}$$
 
 ### 🤖 Алгоритм генерації (Блок-схема)
-
 ```mermaid
 graph LR
     A[Промпт користувача] --> B{Токенізація}
