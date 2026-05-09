@@ -5,7 +5,7 @@
 
 <a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
 
-<div class="glass-panel" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
+<div class="glass-panel" markdown="1" style="padding: 40px; border-radius: 16px; background: var(--bg-glass);">
 
 # 🔗 Корисні ресурси та ШІ-інструменти
 
