@@ -3,6 +3,21 @@
   <script src="../scripts/app.js" defer></script>
 </head>
 
+<div class="glass-panel" markdown="1">
+# ✅ Інтерактивний іспит
+
+<div class="quiz-question">
+  <p><b>1. Що таке LLM?</b></p>
+  <button class="quiz-btn" data-correct="false">Low Level Machine</button>
+  <button class="quiz-btn" data-correct="true">Large Language Model</button>
+</div>
+
+<div class="quiz-question">
+  <p><b>2. ШІ копіює дані з бази даних?</b></p>
+  <button class="quiz-btn" data-correct="false">Так, як пошуковик</button>
+  <button class="quiz-btn" data-correct="true">Ні, він генерує нове</button>
+</div>
+</div>
 <a href="../index.html" class="btn-back">← Повернутися на головну</a>
 
 <div class="glass-panel">
