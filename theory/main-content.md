@@ -17,7 +17,7 @@
 
 # 🧠 Теоретичний блок: Як працює генеративний ШІ?
 
-<div style="background: white; border-left: 4px solid var(--primary); padding: 20px; border-radius: 0 8px 8px 0; margin: 25px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div class="info-box">
   <h3 style="margin-top: 0; color: var(--primary);">Що таке Штучний Інтелект (ШІ)?</h3>
   <p style="margin-bottom: 0;"><b>Штучний інтелект</b> — це здатність комп'ютерних систем виконувати завдання, які зазвичай потребують людського розуму (розпізнавання мови, прийняття рішень, візуальне сприйняття).</p>
 </div>
@@ -36,18 +36,18 @@
 ## 📚 Великі мовні моделі (LLM)
 Такі системи, як ChatGPT, Gemini або Claude, базуються на LLM (Large Language Models). Їхній головний принцип роботи — **передбачення наступного слова (токена)**. Вони не "думають" як люди, а використовують складну математику та статистику, щоб визначити, яке слово з найбільшою ймовірністю має йти далі у реченні.
 
-<div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 6px solid #ffc107; padding: 15px; margin: 25px 0; border-radius: 6px;">
+<div class="alert-box">
   <div style="display: flex; align-items: center; margin-bottom: 10px;">
     <span style="font-size: 24px; margin-right: 15px;">⚠️</span>
-    <h4 style="margin: 0; color: #856404; font-size: 1.2em;">Важливо: Галюцинації ШІ</h4>
+    <h4 style="margin: 0;">Важливо: Галюцинації ШІ</h4>
   </div>
-  <p style="color: #856404; margin-bottom: 0;">Оскільки ШІ лише математично вгадує слова, він іноді може впевнено видавати абсолютно неправдиву інформацію. Це небезпечне явище називається <b>галюцинацією ШІ</b> і вимагає обов'язкового фактчекінгу.</p>
+  <p style="margin-bottom: 0;">Оскільки ШІ лише математично вгадує слова, він іноді може впевнено видавати абсолютно неправдиву інформацію. Це небезпечне явище називається <b>галюцинацією ШІ</b> і вимагає обов'язкового фактчекінгу.</p>
 </div>
 
 ## ✍️ Основи промпт-інжинірингу
 **Промпт** (запит) — це текст, який ви надсилаєте штучному інтелекту, щоб отримати відповідь. 
 
-<div style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; margin: 20px 0;">
+<div class="info-box" style="text-align: center;">
   <span style="font-family: monospace; font-size: 1.2em; color: var(--primary);">Формула ідеального промпту: <br><b>[РОЛЬ] + [КОНТЕКСТ] + [ЗАВДАННЯ] + [ФОРМАТ]</b></span>
 </div>
 
