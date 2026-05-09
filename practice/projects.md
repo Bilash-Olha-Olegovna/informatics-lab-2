@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" href="../styles/custom.css">
-  <script src="../scripts/interactive.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
 </head>
 
 <a href="../index.html" class="btn-link" style="display: inline-block; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">&larr; Повернутися на головну</a>
