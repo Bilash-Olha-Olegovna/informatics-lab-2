@@ -17,7 +17,7 @@
 
 ## Порівняльна таблиця ефективності
 
-<div style="overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px;">
+<div markdown="1" style="overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px; padding: 10px;">
 
 | ❌ Базовий (поганий) запит | ✅ Професійний запит (Промпт-інжиніринг) | 🔍 Аналіз змін |
 | :--- | :--- | :--- |
