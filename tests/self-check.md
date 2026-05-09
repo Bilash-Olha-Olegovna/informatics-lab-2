@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" href="../styles/custom.css">
-  <script src="../scripts/interactive.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
 </head>
 
 <a href="../index.html" class="btn-back">← Повернутися на головну</a>
