@@ -50,4 +50,19 @@
 
 </div>
 
+<div style="background: white; padding: 15px 20px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <h4 style="margin: 0 0 5px 0; color: var(--primary);">🔄 Трансформер (Transformer)</h4>
+    <p style="margin: 0; color: var(--text-main); font-size: 0.95em;">Архітектура нейронної мережі, представлена у 2017 році ("Attention Is All You Need"). Базується на механізмі уваги, що дозволяє моделі враховувати зв'язки між усіма словами речення одночасно. Є основою для GPT, Claude, Gemini.</p>
+  </div>
+
+  <div style="background: white; padding: 15px 20px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <h4 style="margin: 0 0 5px 0; color: var(--primary);">🌡 Температура (Temperature)</h4>
+    <p style="margin: 0; color: var(--text-main); font-size: 0.95em;">Параметр генерації LLM (від 0 до 2), що керує "креативністю" відповіді. Низька температура (0.1–0.3) дає точні, передбачувані відповіді, а висока (0.8–1.5) — різноманітні та творчі.</p>
+  </div>
+
+  <div style="background: white; padding: 15px 20px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <h4 style="margin: 0 0 5px 0; color: var(--primary);">🧱 Нейронна мережа (Neural Network)</h4>
+    <p style="margin: 0; color: var(--text-main); font-size: 0.95em;">Математична модель, натхненна структурою мозку, що складається з шарів взаємопов'язаних вузлів (нейронів). Навчається виявляти закономірності в даних шляхом коригування вагових коефіцієнтів.</p>
+  </div>
+
 </div>
