@@ -121,3 +121,24 @@ pre { position: relative; padding: 20px; background: var(--terminal-bg) !importa
     font-size: 1.2rem;
   }
 }
+
+/* === MOBILE DEAD ZONE FIX === */
+@media (max-width: 480px) {
+  body {
+    padding-bottom: 100px;
+  }
+  .theme-toggle {
+    bottom: 16px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  .global-progress-hud, #global-hud {
+    bottom: 16px;
+    right: 12px;
+    max-width: calc(60vw - 20px);
+    font-size: 0.85rem;
+    padding: 8px 12px !important;
+  }
+}
