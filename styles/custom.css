@@ -1,23 +1,29 @@
+/* === Змінні (Світла та Темна теми) === */
 :root {
   --bg-main: #f8fafc;
-  --bg-glass: rgba(255, 255, 255, 0.8);
-  --text-main: #1e293b;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --text-main: #0f172a;
   --text-muted: #64748b;
   --primary: #2563eb;
-  --card-border: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --success: #10b981;
+  --danger: #ef4444;
   --terminal-bg: #0f172a;
 }
 
 [data-theme="dark"] {
   --bg-main: #0f172a;
-  --bg-glass: rgba(30, 41, 59, 0.85); /* Темный стеклянный фон */
+  --bg-glass: rgba(30, 41, 59, 0.85); /* Глибокий темний колір для панелей */
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --primary: #60a5fa;
+  --primary: #3b82f6;
+  --card-bg: #1e293b;
   --card-border: rgba(255, 255, 255, 0.1);
   --terminal-bg: #020617;
 }
 
+/* === Базові стилі === */
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bg-main);
@@ -26,48 +32,117 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* === Компоненти === */
 .glass-panel {
   background: var(--bg-glass) !important;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
-  color: var(--text-main) !important;
-  transition: background 0.3s ease, color 0.3s ease;
+  color: var(--text-main);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* Фикс для таблиц на мобильных */
+.btn-back {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.btn-back:hover { transform: translateY(-2px); }
+
+/* === Таблиці (Адаптивні для телефону) === */
 .table-container {
   width: 100%;
-  overflow-x: auto; /* Позволяет прокручивать таблицу вбок */
+  overflow-x: auto;
   margin: 20px 0;
-  border-radius: 8px;
-  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
 }
-
-table {
-  min-width: 600px; /* Гарантирует, что таблица не сожмется в кашу */
+.enterprise-table {
   width: 100%;
+  min-width: 700px;
   border-collapse: collapse;
 }
+.enterprise-table th {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 16px;
+  text-align: left;
+}
+.enterprise-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-main);
+}
 
-/* Стили для интерактивного теста */
+/* === Інтерактивний тест === */
 .quiz-question {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 25px;
   border-radius: 12px;
   margin-bottom: 20px;
 }
-.quiz-option {
+.quiz-btn {
   display: block;
-  padding: 10px;
-  margin: 5px 0;
+  width: 100%;
+  text-align: left;
+  padding: 15px 20px;
+  margin: 10px 0;
+  background: var(--bg-main);
   border: 1px solid var(--card-border);
-  border-radius: 6px;
+  color: var(--text-main);
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
-.quiz-option:hover { background: var(--primary); color: white; }
-.correct { background: #10b981 !important; color: white; }
-.wrong { background: #ef4444 !important; color: white; }
+.quiz-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateX(5px);
+}
+.quiz-btn.correct { background: var(--success) !important; color: #fff !important; border-color: var(--success); }
+.quiz-btn.wrong { background: var(--danger) !important; color: #fff !important; border-color: var(--danger); }
+.quiz-btn:disabled { cursor: default; opacity: 0.9; }
+
+/* === Спливаючі повідомлення === */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toast {
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease forwards;
+}
+.toast-success { background: var(--success); }
+.toast-error { background: var(--danger); }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fadeOut { to { transform: translateX(100%); opacity: 0; } }
+
+/* === Мобільна адаптація === */
+@media (max-width: 768px) {
+  body { padding: 1rem; }
+  .glass-panel { padding: 20px; }
+}
