@@ -7,11 +7,11 @@
 
 <div class="glass-panel">
 
-  <h1 style="margin-top: 0; color: var(--primary);">📊 Критерії оцінювання</h1>
-  <p style="color: var(--text-muted);">Оцінювання практичних робіт здійснюється за 12-бальною шкалою з урахуванням технічних навичок учня.</p>
+  <h1 class="text-adaptive" style="margin-top: 0;">📊 Критерії оцінювання</h1>
+  <p class="text-muted-adaptive">Оцінювання практичних робіт здійснюється за 12-бальною шкалою з урахуванням технічних навичок учня.</p>
 
   <div class="table-container">
-    <table class="enterprise-table">
+    <table class="enterprise-table text-adaptive">
       <thead>
         <tr>
           <th>Критерій</th>
@@ -49,7 +49,7 @@
     </table>
   </div>
 
-  <div style="margin-top: 30px; padding: 20px; background: var(--terminal-bg); color: #a7f3d0; border-radius: 8px; text-align: center; font-family: monospace;">
+  <div class="bg-adaptive text-adaptive" style="margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-family: monospace; border: 1px solid var(--card-border);">
     <b>Формула підсумкової оцінки:</b> <br>
     Сума балів за всіма критеріями = Оцінка за 12-бальною шкалою
   </div>

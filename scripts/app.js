@@ -1,5 +1,5 @@
 /**
- * GenAI EdTech Platform Core | v5.0 SECURE ENTERPRISE (PERFECTION PASS)
+ * GenAI EdTech Platform Core | v6.0 SECURE ENTERPRISE (PERFECTION PASS)
  */
 (() => {
     'use strict';
@@ -11,7 +11,10 @@
                 const item = localStorage.getItem(`ai_edu_${k}`);
                 if (item === null || item === 'undefined') return d;
                 return JSON.parse(item);
-            } catch { return d; }
+            } catch (e) { 
+                console.warn(`Storage read error for key: ${k}`, e);
+                return d; 
+            }
         },
         set: (k, v) => {
             try {
@@ -43,20 +46,17 @@
             if (!msg || msg === 'undefined') return;
             const t = document.createElement('div');
             t.className = `toast toast-${type}`;
-            // Add icon
             const icon = type === 'success' ? '✅' : '❌';
             t.innerHTML = `<span>${icon}</span> <span>${msg}</span>`;
             
             this.container.appendChild(t);
             
-            // Setup animation cleanup
             let timeoutId = setTimeout(() => { 
                 t.style.opacity = '0'; 
                 t.style.transform = 'translateY(20px)'; 
                 setTimeout(() => t.remove(), 400); 
             }, duration);
 
-            // Allow dismissal on click
             t.addEventListener('click', () => {
                 clearTimeout(timeoutId);
                 t.style.opacity = '0'; 
@@ -67,7 +67,6 @@
 
         static injectCopyButtons() {
             document.querySelectorAll('pre').forEach(pre => {
-                // Prevent duplicate buttons
                 if (pre.querySelector('.copy-btn')) return;
 
                 const codeNode = pre.querySelector('code');
@@ -118,6 +117,7 @@
         constructor() {
             this.xp = Number(Storage.get('xp', 0)) || 0;
             this.level = Math.floor(this.xp / 100) + 1;
+            this.isAnimating = false; // Prevent double animations
             this.renderHUD();
         }
 
@@ -130,13 +130,11 @@
                 document.body.appendChild(hud);
             }
             
-            // Avoid layout thrashing by checking if update is needed
             const newHTML = `<span>🏆 Lvl <span id="hud-lvl">${this.level}</span></span><div class="hud-sep"></div><span>✨ <span id="hud-xp">${this.xp}</span> XP</span>`;
             if (hud.innerHTML !== newHTML) {
                 hud.innerHTML = newHTML;
             }
             
-            // Sync Dashboard safely
             const bar = document.getElementById('xp-bar');
             const cnt = document.getElementById('xp-counter');
             const lvl = document.getElementById('level-counter');
@@ -148,18 +146,13 @@
                 const progressNum = (this.xp % 100);
                 const progress = progressNum + '%';
                 
-                // Initialization
                 if (!bar.dataset.initialized) {
                     bar.dataset.initialized = 'true';
                     bar.style.width = '0%';
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            bar.style.width = progress;
-                        });
-                    });
-                } else {
-                    // Level up animation handler
+                    requestAnimationFrame(() => requestAnimationFrame(() => bar.style.width = progress));
+                } else if (!this.isAnimating) {
                     if (progressNum === 0 && this.xp > 0) {
+                        this.isAnimating = true;
                         bar.style.width = '100%';
                         setTimeout(() => { 
                             bar.style.transition = 'none'; 
@@ -168,6 +161,7 @@
                                 requestAnimationFrame(() => {
                                     bar.style.transition = 'width 1s cubic-bezier(0.4, 0, 0.2, 1)'; 
                                     bar.style.width = progress;
+                                    this.isAnimating = false;
                                 });
                             });
                         }, 1000);
@@ -219,7 +213,6 @@
             });
             input.parentNode.insertBefore(liveBar, input.nextSibling);
 
-            // Performance: Cache DOM elements
             const pillElements = pills.map(p => ({
                 el: document.getElementById(p.id),
                 ...p
@@ -231,10 +224,10 @@
                 timeout = setTimeout(() => {
                     const t = input.value.toLowerCase();
                     const checks = [
-                        { id: 'pill-role', ok: /(дій як|уяви себе|ти —|в ролі|виступи як|експерт|помічник|вчитель)/.test(t) },
-                        { id: 'pill-ctx',  ok: /(для учн|для студент|для фахівц|ситуація:|оскільки|мета:|щоб)/.test(t) },
-                        { id: 'pill-task', ok: /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|сформулюй)/.test(t) },
-                        { id: 'pill-fmt',  ok: /(формат|список|таблиц|речен|абзац|пунктів|кроків)/.test(t) }
+                        { id: 'pill-role', ok: /(дій як|уяви себе|ти —|в ролі|виступи як|експерт|помічник|вчитель|програміст|аналітик|маркетолог|копірайтер)/.test(t) },
+                        { id: 'pill-ctx',  ok: /(для учн|для студент|для фахівц|ситуація:|оскільки|мета:|щоб|враховуючи|зважаючи на|контекст:)/.test(t) },
+                        { id: 'pill-task', ok: /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|сформулюй|розв'яжи|перепиши|оптимізуй)/.test(t) },
+                        { id: 'pill-fmt',  ok: /(формат|список|таблиц|речен|абзац|пунктів|кроків|код|блок-схем|JSON|CSV)/.test(t) }
                     ];
                     
                     checks.forEach((c, idx) => {
@@ -263,14 +256,14 @@
             const btn = document.getElementById('evaluate-btn');
             if (!input || !res) return;
 
-            if (btn) { 
-                btn.disabled = true; 
-                btn.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.style.transform = 'none';
-                }, 1500); 
-            }
+            // Debounce evaluation clicks
+            if (btn.disabled) return;
+            btn.disabled = true; 
+            btn.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.style.transform = 'none';
+            }, 1500); 
 
             const val = input.value.toLowerCase().trim();
             if (val.length < 15) { 
@@ -279,10 +272,10 @@
             }
 
             const criteria = [
-                { reg: /(дій як|уяви себе|ти —|в ролі|виступи як|експерт|помічник|вчитель)/i, msg: '🎭 Роль визначена' },
-                { reg: /(для учн|для студент|для фахівц|ситуація:|оскільки|мета:|щоб)/i, msg: '🌍 Контекст/Аудиторія зрозуміла' },
-                { reg: /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|сформулюй)/i, msg: '🎯 Чітке завдання (дієслово)' },
-                { reg: /(формат|список|таблиц|речен|абзац|пунктів|кроків)/i, msg: '📋 Встановлено формат виводу' }
+                { reg: /(дій як|уяви себе|ти —|в ролі|виступи як|експерт|помічник|вчитель|програміст|аналітик|маркетолог|копірайтер)/i, msg: '🎭 Роль визначена' },
+                { reg: /(для учн|для студент|для фахівц|ситуація:|оскільки|мета:|щоб|враховуючи|зважаючи на|контекст:)/i, msg: '🌍 Контекст/Аудиторія зрозуміла' },
+                { reg: /(напиши|створи|поясни|зроби|розробіть|склади|проаналізуй|сформулюй|розв'яжи|перепиши|оптимізуй)/i, msg: '🎯 Чітке завдання (дієслово)' },
+                { reg: /(формат|список|таблиц|речен|абзац|пунктів|кроків|код|блок-схем|json|csv)/i, msg: '📋 Встановлено формат виводу' }
             ];
 
             let score = 0;
@@ -348,7 +341,7 @@
             applyTheme(window.engine.theme);
         });
 
-        // FIX: Secure Quiz Logic (Anti-Farm)
+        // SECURE QUIZ LOGIC
         const solvedQuizzes = Storage.getArray('solved_quizzes');
         
         document.querySelectorAll('.quiz-question').forEach(q => {
@@ -364,7 +357,7 @@
             }
         });
 
-        // Event delegation for quizzes for better memory management
+        // Delegate click events for quizzes
         document.body.addEventListener('click', (e) => {
             const btn = e.target.closest('.quiz-btn');
             if (!btn) return;
@@ -372,11 +365,11 @@
             const parent = btn.closest('.quiz-question');
             if (!parent || parent.dataset.done) return;
             
-            const qId = parent.getAttribute('data-qid');
+            // Lock immediately to prevent multi-clicks
             parent.dataset.done = 'true';
-            
             parent.querySelectorAll('.quiz-btn').forEach(b => b.disabled = true);
             
+            const qId = parent.getAttribute('data-qid');
             const isCorrect = btn.dataset.correct === 'true';
             const feedback = btn.dataset.feedback || (isCorrect ? 'Чудова робота!' : 'Спробуйте ще раз наступного разу.');
 

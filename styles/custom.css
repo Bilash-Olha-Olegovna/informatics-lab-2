@@ -170,7 +170,18 @@ a { color: var(--primary); text-decoration: none; transition: 0.2s; }
 a:hover { text-decoration: underline; color: #ec4899; }
 hr { border: 0; border-top: 1px solid var(--card-border); margin: 3rem 0; }
 
-/* Custom Content Blocks */
+/* Custom Content Blocks & Adaptive Utilities */
+.text-adaptive { color: var(--text-main) !important; }
+.text-muted-adaptive { color: var(--text-muted) !important; }
+.bg-adaptive { background: var(--bg-main) !important; }
+.highlight-box { 
+  background: var(--card-bg); 
+  border: 1px solid var(--card-border); 
+  border-radius: 12px; 
+  padding: 25px; 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+}
+
 .term-card { 
   background: var(--card-bg); 
   padding: 20px 25px; 
@@ -179,6 +190,7 @@ hr { border: 0; border-top: 1px solid var(--card-border); margin: 3rem 0; }
   margin-bottom: 20px; 
   box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
   transition: box-shadow 0.3s ease;
+  color: var(--text-main);
 }
 .term-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
@@ -494,20 +506,24 @@ button.primary-btn:disabled {
 /* Mobile Responsiveness */
 @media (max-width: 768px) { 
   .grid-container { grid-template-columns: 1fr; } 
-  body { padding: 1.25rem; padding-bottom: 180px; } /* Extra space for mobile HUD */
+  body { 
+    padding: 1.25rem; 
+    padding-bottom: max(200px, calc(180px + env(safe-area-inset-bottom))); 
+  }
   .glass-panel { padding: 1.5rem; }
+  .global-progress-hud { bottom: max(20px, env(safe-area-inset-bottom)); right: 20px; font-size: 0.9rem; padding: 10px 20px !important; }
+  .theme-toggle { bottom: max(20px, env(safe-area-inset-bottom)); left: 20px; width: 50px; height: 50px; font-size: 1.2rem; }
+}
+
+@keyframes slideUpHUD {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (max-width: 480px) {
   .hero-section { padding: 2rem 0; }
   .gradient-text { font-size: 2.2rem; }
-  .theme-toggle { 
-    bottom: 20px; left: 20px; 
-    width: 50px; height: 50px; 
-    font-size: 1.3rem; 
-  }
-  .global-progress-hud { 
-    bottom: 20px; right: 20px; 
+  .global-progress-hud {
     padding: 10px 18px !important; 
     font-size: 0.9rem; 
   }
