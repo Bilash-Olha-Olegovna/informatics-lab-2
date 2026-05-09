@@ -1,12 +1,12 @@
 /**
- * GenAI EdTech Platform Core
- * Modular Architecture using ES6 Classes
+ * GenAI EdTech Platform Core | v4.0 ENTERPRISE
+ * Modular Architecture (Storage, Progress HUD, Regex Evaluator, Gamification)
  */
 
 (() => {
     'use strict';
 
-    // 1. STORAGE MODULE
+    // === 1. STORAGE MODULE ===
     class StorageModule {
         static get(key, defaultValue = null) {
             try {
@@ -19,37 +19,7 @@
         }
     }
 
-    // 2. XP & PROGRESS MODULE
-    class ProgressSystem {
-        constructor() {
-            this.xp = StorageModule.get('xp', 0);
-            this.level = Math.floor(this.xp / 100) + 1;
-            this.updateUI();
-        }
-
-        addXP(amount) {
-            this.xp += amount;
-            this.level = Math.floor(this.xp / 100) + 1;
-            StorageModule.set('xp', this.xp);
-            this.updateUI();
-            if (window.UI) window.UI.showToast(`🏆 Отримано +${amount} XP!`, 'success');
-        }
-
-        updateUI() {
-            const xpText = document.getElementById('xp-counter');
-            const levelText = document.getElementById('level-counter');
-            const xpBar = document.getElementById('xp-bar');
-            
-            if (xpText) xpText.innerText = `${this.xp} XP`;
-            if (levelText) levelText.innerText = `Рівень ${this.level}`;
-            if (xpBar) {
-                const progress = (this.xp % 100) + '%';
-                xpBar.style.width = progress;
-            }
-        }
-    }
-
-    // 3. UI & ACCESSIBILITY MODULE
+    // === 2. UI & TOAST MODULE ===
     class UIModule {
         constructor() {
             this.toastContainer = document.createElement('div');
@@ -65,68 +35,76 @@
             this.toastContainer.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
-    }
 
-    // 4. THEME MODULE
-    class ThemeModule {
-        constructor() {
-            this.theme = StorageModule.get('theme', 'dark');
-            this.toggleBtn = document.getElementById('themeToggle');
-            this.applyTheme(this.theme);
-            if (this.toggleBtn) {
-                this.toggleBtn.addEventListener('click', () => this.toggle());
-                this.toggleBtn.setAttribute('aria-label', 'Перемикач темної та світлої теми');
+        static shootConfetti() {
+            // Динамічно завантажуємо скрипт конфетті, якщо його ще немає
+            if (!window.confetti) {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+                script.onload = () => window.confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                document.body.appendChild(script);
+            } else {
+                window.confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             }
         }
-
-        toggle() {
-            this.theme = this.theme === 'light' ? 'dark' : 'light';
-            StorageModule.set('theme', this.theme);
-            this.applyTheme(this.theme);
-        }
-
-        applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            if (this.toggleBtn) this.toggleBtn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
-        }
     }
 
-    // 5. QUIZ MANAGER (Тепер з нарахуванням XP)
-    class QuizManager {
+    // === 3. PROGRESS & GLOBAL HUD MODULE ===
+    class ProgressSystem {
         constructor() {
-            const buttons = document.querySelectorAll('.quiz-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const target = e.target;
-                    const parent = target.closest('.quiz-question');
-                    const allBtns = parent.querySelectorAll('.quiz-btn');
-                    
-                    // Блокуємо повторні натискання
-                    allBtns.forEach(b => b.disabled = true);
-                    
-                    const isCorrect = target.getAttribute('data-correct') === 'true';
-                    const feedback = target.getAttribute('data-feedback') || '';
-                    
-                    if (isCorrect) {
-                        target.classList.add('correct');
-                        window.UI.showToast(`✅ Правильно! ${feedback}`, 'success');
-                        window.Progress.addXP(20); // Даємо 20 XP за правильну відповідь
-                    } else {
-                        target.classList.add('wrong');
-                        window.UI.showToast(`❌ Неправильно. ${feedback}`, 'error');
-                        // Підсвічуємо правильну відповідь
-                        const correctBtn = parent.querySelector('[data-correct="true"]');
-                        if (correctBtn) correctBtn.classList.add('correct');
-                    }
-                });
-            });
+            this.xp = StorageModule.get('xp', 0);
+            this.level = Math.floor(this.xp / 100) + 1;
+            this.createGlobalHUD();
+            this.updateUI();
+        }
+
+        createGlobalHUD() {
+            // Створюємо плаваючий віджет прогресу для всіх сторінок
+            this.hud = document.createElement('div');
+            this.hud.className = 'global-progress-hud glass-panel';
+            this.hud.innerHTML = `
+                <div class="hud-level">Рівень <span id="hud-lvl-val">${this.level}</span></div>
+                <div class="hud-xp"><span id="hud-xp-val">${this.xp}</span> XP</div>
+            `;
+            document.body.appendChild(this.hud);
+        }
+
+        addXP(amount) {
+            this.xp += amount;
+            const newLevel = Math.floor(this.xp / 100) + 1;
+            
+            if (newLevel > this.level) {
+                this.level = newLevel;
+                if (window.UI) window.UI.showToast(`🎉 Рівень підвищено до ${this.level}!`, 'success');
+                UIModule.shootConfetti();
+            }
+            
+            StorageModule.set('xp', this.xp);
+            this.updateUI();
+            if (window.UI && amount > 0) window.UI.showToast(`🏆 Отримано +${amount} XP!`, 'success');
+        }
+
+        updateUI() {
+            // Оновлення головного дашборду (якщо ми на index.html)
+            const mainXpText = document.getElementById('xp-counter');
+            const mainLevelText = document.getElementById('level-counter');
+            const mainXpBar = document.getElementById('xp-bar');
+            
+            if (mainXpText) mainXpText.innerText = `${this.xp} XP`;
+            if (mainLevelText) mainLevelText.innerText = `Рівень ${this.level}`;
+            if (mainXpBar) mainXpBar.style.width = `${this.xp % 100}%`;
+
+            // Оновлення плаваючого HUD
+            document.getElementById('hud-lvl-val').innerText = this.level;
+            document.getElementById('hud-xp-val').innerText = this.xp;
         }
     }
 
-    // 6. AI PROMPT EVALUATOR (Тренажер промптів)
+    // === 4. SMART PROMPT EVALUATOR (NLP/Regex) ===
     class PromptEvaluator {
         constructor() {
             this.input = document.getElementById('prompt-input');
@@ -134,91 +112,125 @@
             this.resultBox = document.getElementById('eval-result');
 
             if (this.btn && this.input) {
-                this.btn.addEventListener('click', () => this.evaluate());
+                // Debounce для кнопки
+                this.btn.addEventListener('click', () => {
+                    this.btn.disabled = true;
+                    this.btn.innerText = "Аналізуємо...";
+                    setTimeout(() => {
+                        this.evaluate();
+                        this.btn.disabled = false;
+                        this.btn.innerText = "Оцінити промпт";
+                    }, 600);
+                });
             }
         }
 
         evaluate() {
-            const text = this.input.value.toLowerCase();
-            if (text.length < 10) {
-                window.UI.showToast('❌ Промпт занадто короткий!', 'error');
+            const text = this.input.value.toLowerCase().trim();
+            if (text.length < 15) {
+                window.UI.showToast('❌ Промпт занадто короткий. Опишіть детальніше!', 'error');
                 return;
             }
 
             let score = 0;
             let feedback = [];
 
-            // Перевірка Ролі
-            if (text.includes('дій як') || text.includes('ти ') || text.includes('уяви себе')) {
-                score += 25;
-                feedback.push('✅ <b>Роль:</b> Використано правильно');
-            } else {
-                feedback.push('❌ <b>Роль:</b> Відсутня (Спробуйте почати з "Дій як...")');
-            }
+            // Розумна перевірка (Regex)
+            const regexRole = /(уяви|дій|ти|ролі|виступай|вчитель|експерт|фахівець|розробник)/i;
+            const regexContext = /(для|контекст|ситуація|оскільки|тому що|учня|компанії|проєкт)/i;
+            const regexTask = /(напиши|створи|поясни|зроби|склади|розроби|згенеруй|надай)/i;
+            const regexFormat = /(формат|список|таблиц|речен|абзац|код|маркован|структур)/i;
 
-            // Перевірка Контексту
-            if (text.includes('для') || text.includes('тому що') || text.includes('контекст')) {
-                score += 25;
-                feedback.push('✅ <b>Контекст:</b> Присутній');
-            } else {
-                feedback.push('❌ <b>Контекст:</b> Відсутній (Поясніть, для кого або навіщо це потрібно)');
-            }
+            if (regexRole.test(text)) { score += 25; feedback.push('✅ <b>Роль:</b> Визначено чітко'); } 
+            else { feedback.push('❌ <b>Роль:</b> Додайте персону (напр. "Дій як експерт...")'); }
 
-            // Перевірка Завдання
-            if (text.includes('напиши') || text.includes('створи') || text.includes('поясни') || text.includes('зроби')) {
-                score += 25;
-                feedback.push('✅ <b>Завдання:</b> Чітке дієслово знайдено');
-            } else {
-                feedback.push('❌ <b>Завдання:</b> Нечітке (Використовуйте дієслова-дії)');
-            }
+            if (regexContext.test(text)) { score += 25; feedback.push('✅ <b>Контекст:</b> Зрозумілий'); } 
+            else { feedback.push('❌ <b>Контекст:</b> Поясніть ситуацію або для кого це.'); }
 
-            // Перевірка Формату
-            if (text.includes('формат') || text.includes('список') || text.includes('таблиц') || text.includes('речен')) {
-                score += 25;
-                feedback.push('✅ <b>Формат:</b> Обмеження встановлено');
-            } else {
-                feedback.push('❌ <b>Формат:</b> Не задано (Вкажіть формат, наприклад: "у вигляді списку")');
-            }
+            if (regexTask.test(text)) { score += 25; feedback.push('✅ <b>Завдання:</b> Дієслово-дія присутнє'); } 
+            else { feedback.push('❌ <b>Завдання:</b> Немає чіткої команди (напр. "Напиши...")'); }
 
+            if (regexFormat.test(text)) { score += 25; feedback.push('✅ <b>Формат:</b> Обмеження встановлено'); } 
+            else { feedback.push('❌ <b>Формат:</b> Вкажіть, як подати результат (напр. "у вигляді таблиці").'); }
+
+            // Виведення результату
             this.resultBox.style.display = 'block';
-            this.resultBox.style.background = 'var(--terminal-bg)';
-            this.resultBox.style.padding = '20px';
-            this.resultBox.style.borderRadius = '8px';
-            this.resultBox.style.marginTop = '20px';
-
+            this.resultBox.className = 'prompt-result glass-panel';
             this.resultBox.innerHTML = `
-                <h3 style="color: ${score === 100 ? 'var(--success)' : 'var(--xp-color)'}; margin-top: 0;">Оцінка промпту: ${score}/100</h3>
+                <h3 style="color: ${score === 100 ? 'var(--success)' : 'var(--xp-color)'}; margin-top: 0;">Оцінка: ${score}/100</h3>
                 <ul style="list-style: none; padding: 0;">
                     ${feedback.map(f => `<li style="margin: 8px 0; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;">${f}</li>`).join('')}
                 </ul>
             `;
 
-            // Досягнення за ідеальний промпт
             if (score === 100 && !StorageModule.get('prompt_master')) {
                 window.Progress.addXP(50);
                 StorageModule.set('prompt_master', true);
-                window.UI.showToast('🏆 Досягнення: Майстер Промптів (+50 XP)!', 'success');
+                window.UI.showToast('🏆 Досягнення: Майстер Промптів!', 'success');
+                UIModule.shootConfetti();
             }
         }
     }
 
-    // Запуск додатка
+    // === 5. ENHANCED CODE BLOCKS (Copy Buttons) ===
+    class CodeBlockEnhancer {
+        static init() {
+            document.querySelectorAll('pre').forEach(pre => {
+                // Пропускаємо, якщо кнопка вже є
+                if (pre.querySelector('.copy-btn')) return;
+
+                pre.style.position = 'relative';
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.innerHTML = '📋 Copy';
+                
+                btn.addEventListener('click', async () => {
+                    const code = pre.querySelector('code');
+                    if (!code) return;
+                    try {
+                        await navigator.clipboard.writeText(code.innerText);
+                        btn.innerHTML = '✅ Copied!';
+                        btn.classList.add('copied');
+                        window.UI.showToast('Код скопійовано!', 'success');
+                        setTimeout(() => {
+                            btn.innerHTML = '📋 Copy';
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Copy failed', err);
+                    }
+                });
+                
+                pre.appendChild(btn);
+            });
+        }
+    }
+
+    // === INIT SYSTEM ===
     document.addEventListener('DOMContentLoaded', () => {
         window.UI = new UIModule();
         window.Progress = new ProgressSystem();
-        
-        new ThemeModule();
-        new QuizManager();
         new PromptEvaluator();
+        CodeBlockEnhancer.init();
 
-        // Копіювання коду
-        document.querySelectorAll('code').forEach(block => {
-            block.addEventListener('click', async (e) => {
-                try {
-                    await navigator.clipboard.writeText(e.target.innerText);
-                    window.UI.showToast('📋 Скопійовано в буфер обміну!', 'success');
-                } catch (err) {
-                    console.error('Помилка копіювання', err);
+        // Тести
+        document.querySelectorAll('.quiz-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const target = e.target;
+                const parent = target.closest('.quiz-question');
+                if (parent.dataset.answered) return;
+                
+                parent.dataset.answered = 'true';
+                const isCorrect = target.dataset.correct === 'true';
+                
+                if (isCorrect) {
+                    target.classList.add('correct');
+                    window.UI.showToast('✅ Правильно!', 'success');
+                    window.Progress.addXP(15);
+                } else {
+                    target.classList.add('wrong');
+                    window.UI.showToast('❌ Помилка.', 'error');
+                    parent.querySelector('[data-correct="true"]').classList.add('correct');
                 }
             });
         });
