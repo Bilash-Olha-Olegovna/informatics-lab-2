@@ -63,4 +63,28 @@
   </a>
 </div>
 
+<h3 style="margin-top: 40px; color: #ec4899; border-bottom: 2px solid #ec4899; padding-bottom: 10px;">🎵 Генерація аудіо та музики</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+  <a href="https://suno.com/" target="_blank" class="term-card" style="text-decoration: none; display: block; margin-bottom: 0;">
+    <b>Suno AI</b><br>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Створення повноцінних пісень з вокалом та інструменталом за текстовим описом.</span>
+  </a>
+  <a href="https://www.udio.com/" target="_blank" class="term-card" style="text-decoration: none; display: block; margin-bottom: 0;">
+    <b>Udio</b><br>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Високоякісна генерація музики студійної якості.</span>
+  </a>
+</div>
+
+<h3 style="margin-top: 40px; color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">👨‍💻 ШІ для програмування</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+  <a href="https://cursor.sh/" target="_blank" class="term-card" style="text-decoration: none; display: block; margin-bottom: 0;">
+    <b>Cursor IDE</b><br>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Редактор коду з глибоко інтегрованим ШІ (розуміє весь проект).</span>
+  </a>
+  <a href="https://github.com/features/copilot" target="_blank" class="term-card" style="text-decoration: none; display: block; margin-bottom: 0;">
+    <b>GitHub Copilot</b><br>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Класичний AI-помічник для розробників.</span>
+  </a>
+</div>
+
 </div>
