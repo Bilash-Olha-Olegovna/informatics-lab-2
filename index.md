@@ -1,16 +1,24 @@
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Найсучасніша освітня платформа про ШІ для учнів.">
-  <title>GenAI PRO | Освітня платформа</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний освітній курс з Генеративного ШІ та Промпт-інжинірингу для 10-11 класів.">
+  <title>Генеративний ШІ: Платформа майбутнього</title>
+  
   <link rel="stylesheet" href="styles/custom.css">
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  
   <script src="scripts/app.js" defer></script>
 </head>
 
-<header class="hero-section glass-panel">
-  <div class="badge">v4.0 ENTERPRISE</div>
-  <h1 class="gradient-text">Генеративний ШІ: Платформа</h1>
-  <p class="subtitle">Освітній простір з інтелектуальним HUD</p>
+<a href="#main-content" class="skip-link">Перейти до основного контенту</a>
+
+<header class="hero-section glass-panel" aria-labelledby="hero-title">
+  <div class="hero-content">
+    <div class="badge" role="status">v4.0 ENTERPRISE</div>
+    <h1 id="hero-title" class="gradient-text">Генеративний ШІ: Платформа</h1>
+    <p class="subtitle">Інтерактивний освітній простір з системою відстеження прогресу</p>
+  </div>
 </header>
 
 <main id="main-content">
@@ -68,10 +76,16 @@
   </nav>
 
   <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">🌙</button>
-</main>
 
-<footer style="margin-top: 50px; text-align: center; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px;" role="contentinfo">
-  <p>© 2026 Enterprise EdTech Platform | Побудовано для Лабораторної №2</p>
-</footer>
-  <p>© 2026 Enterprise EdTech Platform | Побудовано для Лабораторної №2</p>
-</footer>
+  <section style="text-align:center; padding:2rem 1rem; border-top:1px solid var(--card-border); margin-top:3rem;" aria-label="Інформація про автора">
+    <p style="font-size:0.8em; color:var(--text-muted); text-transform:uppercase; letter-spacing:.08em; margin:0 0 8px;">
+      Лабораторна робота №2 · Методика навчання інформатики
+    </p>
+    <p style="font-size:1.05em; font-weight:600; color:var(--text-main); margin:0 0 4px;">
+      Білаш Ольга Олегівна
+    </p>
+    <p style="font-size:0.9em; color:var(--text-muted); margin:0;">
+      Студентка 4 курсу · 2026
+    </p>
+  </section>
+</main>
