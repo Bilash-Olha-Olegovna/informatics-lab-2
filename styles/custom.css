@@ -1,201 +1,84 @@
-/* === DESIGN SYSTEM & VARIABLES === */
 :root {
   --bg-main: #f8fafc;
-  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.8);
   --text-main: #0f172a;
-  --text-muted: #475569;
+  --text-muted: #64748b;
   --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
   --success: #10b981;
   --danger: #ef4444;
-  --terminal-bg: #0f172a;
-  --xp-color: #f59e0b;
-  
-  /* Fluid Typography */
-  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --fs-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
-  --fs-h2: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
-  --spacing-base: clamp(1rem, 2vw, 2rem);
+  --terminal-bg: #1e293b;
 }
 
 [data-theme="dark"] {
   --bg-main: #0f172a;
-  --bg-glass: rgba(30, 41, 59, 0.85);
-  --text-main: #f8fafc;
+  --bg-glass: rgba(30, 41, 59, 0.8);
+  --text-main: #f1f5f9;
   --text-muted: #94a3b8;
   --primary: #3b82f6;
-  --primary-hover: #60a5fa;
-  --card-bg: #1e293b;
   --card-border: rgba(255, 255, 255, 0.1);
   --terminal-bg: #020617;
 }
 
-/* === RESET & ACCESSIBILITY (WCAG AA) === */
-*, *::before, *::after { box-sizing: border-box; }
-
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-size: var(--fs-base);
-  line-height: 1.6;
-  max-width: 1200px; /* Scaled up for wider screens */
-  margin: 0 auto;
-  padding: var(--spacing-base);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden;
+  margin: 0;
+  padding: clamp(1rem, 5vw, 3rem);
+  transition: 0.3s;
 }
 
-/* Keyboard Navigation Focus States */
-*:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Skip to main content link for screen readers */
-.skip-link {
-  position: absolute;
-  top: -40px; left: 0;
-  background: var(--primary);
-  color: white;
-  padding: 8px;
-  z-index: 10000;
-  transition: top 0.2s;
-}
-.skip-link:focus { top: 0; }
-
-/* === COMPONENTS === */
 .glass-panel {
   background: var(--bg-glass) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
   border-radius: 16px;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  /* GPU Optimization */
-  will-change: transform, backdrop-filter;
+  color: var(--text-main) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
-/* XP System Dashboard */
-.xp-dashboard {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-.xp-bar-container {
-  flex-grow: 1;
-  height: 10px;
-  background: var(--bg-main);
-  border-radius: 5px;
-  margin: 0 15px;
-  overflow: hidden;
-}
-.xp-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--xp-color));
-  width: 0%;
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* === REDUCED MOTION SUPPORT === */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* === MOBILE OPTIMIZATION === */
-@media (max-width: 480px) {
-  .glass-panel {
-    /* Reduce blur on mobile to save battery/performance */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  .xp-dashboard {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-  .xp-bar-container { width: 100%; margin: 10px 0; }
-}
-
-/* === GLOBAL PROGRESS HUD === */
+/* Global HUD */
 .global-progress-hud {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  padding: 12px 20px !important;
-  border-radius: 50px !important;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px !important;
   display: flex;
   gap: 15px;
-  align-items: center;
-  z-index: 9999;
-  font-weight: 700;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
-  border: 1px solid var(--primary) !important;
-  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 1000;
+  font-weight: 800;
+  border: 2px solid var(--primary) !important;
+  border-radius: 50px !important;
 }
+.hud-sep { width: 2px; height: 20px; background: var(--card-border); }
 
-.hud-level { color: var(--primary); }
-.hud-xp { color: var(--xp-color); }
-
-@keyframes slideUp {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* === COPY BUTTON IN CODE BLOCKS === */
-pre {
-  background: var(--terminal-bg) !important;
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid var(--card-border);
+/* Адаптивна таблиця */
+.table-container {
+  width: 100%;
   overflow-x: auto;
+  border-radius: 12px;
+  background: var(--bg-glass);
 }
+table { width: 100%; min-width: 600px; border-collapse: collapse; }
+th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+td { padding: 15px; border-bottom: 1px solid var(--card-border); }
 
+/* Тест */
+.quiz-question { margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; }
+.quiz-btn {
+  display: block; width: 100%; text-align: left; padding: 15px;
+  margin: 10px 0; border-radius: 8px; border: 1px solid var(--card-border);
+  background: var(--bg-main); color: var(--text-main); cursor: pointer; transition: 0.2s;
+}
+.quiz-btn:hover { border-color: var(--primary); transform: translateX(5px); }
+.correct { background: var(--success) !important; color: white !important; }
+.wrong { background: var(--danger) !important; color: white !important; }
+
+/* Копіювання коду */
+pre { position: relative; padding: 20px; background: var(--terminal-bg) !important; border-radius: 12px; }
 .copy-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-}
-
-.copy-btn:hover {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
-.copy-btn.copied {
-  background: var(--success);
-  color: white;
-  border-color: var(--success);
-}
-
-/* === PROMPT RESULT BOX === */
-.prompt-result {
-  margin-top: 20px;
-  padding: 20px !important;
-  animation: slideIn 0.3s ease;
+  position: absolute; top: 10px; right: 10px; padding: 5px 10px;
+  background: rgba(255,255,255,0.1); border: 1px solid var(--card-border);
+  color: white; border-radius: 4px; cursor: pointer; font-size: 0.8rem;
 }
