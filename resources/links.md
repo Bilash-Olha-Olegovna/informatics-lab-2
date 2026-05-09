@@ -41,9 +41,9 @@
 
 <h3 style="margin-top: 40px; color: #10b981; border-bottom: 2px solid #10b981; padding-bottom: 10px;">🎓 Навчальні курси</h3>
 <div style="margin-top: 15px;">
-  <a href="https://www.promptingguide.ai/uk" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+  <a href="https://www.promptingguide.ai/" target="_blank" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-main); text-decoration: none; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
     <b>Prompt Engineering Guide</b><br>
-    <span style="font-size: 0.85em; color: var(--text-muted);">Найповніша відкрита база знань з написання промптів.</span>
+    <span style="font-size: 0.85em; color: var(--text-muted);">Найповніша відкрита база знань з написання промптів (міжнародна версія).</span>
   </a>
 </div>
 
