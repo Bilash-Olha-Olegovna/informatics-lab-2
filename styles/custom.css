@@ -15,18 +15,18 @@
 }
 
 [data-theme="dark"] {
-  --bg-main: #020617; /* Дуже глибокий синій, майже чорний */
+  --bg-main: #020617; 
   --bg-glass: rgba(15, 23, 42, 0.85);
   --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
+  --text-muted: #b8c5d6; /* WCAG Fix: покращена контрастність */
   --primary: #3b82f6;
   --primary-glow: rgba(59, 130, 246, 0.4);
   --card-bg: rgba(30, 41, 59, 0.9);
-  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border: rgba(255, 255, 255, 0.14); /* WCAG Fix: чіткіші бордери */
   --terminal-bg: #0f172a;
 }
 
-/* === 2. BASE RESET & TYPOGRAPHY === */
+/* === 2. BASE RESET & AMBIENT GLOW === */
 * { box-sizing: border-box; }
 
 body {
@@ -38,178 +38,100 @@ body {
   padding: clamp(1.5rem, 5vw, 3rem);
   line-height: 1.7;
   transition: background-color 0.4s ease, color 0.4s ease;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Анімація появи сторінки */
-main, .hero-section {
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Ambient Gradient Background */
+body::before {
+  content: ''; position: fixed; top: -20%; left: -10%; width: 60%; height: 60%;
+  background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
+  pointer-events: none; z-index: -1;
 }
+body::after {
+  content: ''; position: fixed; bottom: -10%; right: -10%; width: 50%; height: 50%;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.08) 0%, transparent 70%);
+  pointer-events: none; z-index: -1;
+}
+[data-theme="dark"] body::before { background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%); }
+[data-theme="dark"] body::after { background: radial-gradient(ellipse, rgba(245,158,11,0.1) 0%, transparent 70%); }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+main, .hero-section { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* === 3. HERO & TYPOGRAPHY EFFECTS === */
-.hero-section {
-  text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 2rem;
-  position: relative;
-}
-
+.hero-section { text-align: center; padding: 3rem 1rem; margin-bottom: 2rem; }
 .gradient-text {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin: 10px 0;
+  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin: 10px 0;
   background: linear-gradient(135deg, var(--primary), #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-
-.subtitle {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
+.subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 .badge {
-  display: inline-block;
-  padding: 5px 12px;
-  background: var(--primary-glow);
-  color: var(--primary);
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-  border: 1px solid var(--primary);
+  display: inline-block; padding: 5px 12px; background: var(--primary-glow);
+  color: var(--primary); border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 1px; margin-bottom: 10px; border: 1px solid var(--primary);
 }
 
-/* === 4. GRID & CARDS (ВІДНОВЛЕНО) === */
+/* === 4. GRID & CARDS === */
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  margin: 40px 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;
 }
-
 .course-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 25px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-  display: flex;
-  flex-direction: column;
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px;
+  padding: 25px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex; flex-direction: column; cursor: default;
 }
-
 .course-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px var(--primary-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.12);
   border-color: var(--primary);
 }
-
-.card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-  margin-top: 0;
-}
-
+.card-icon { font-size: 2.5rem; margin-bottom: 15px; margin-top: 0; }
 .course-card h3 { margin: 0 0 10px 0; color: var(--text-main); }
 .course-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
-
 .card-links { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--card-border); padding-top: 15px; }
 .card-links li { margin-bottom: 10px; }
 .card-links a {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
+  color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  transition: 0.2s; display: inline-flex; align-items: center; gap: 4px;
 }
-.card-links a:hover { color: #ec4899; transform: translateX(5px); }
+.card-links a:hover { color: #ec4899; gap: 8px; text-decoration: underline; }
 
 /* === 5. GLASSMORPHISM PANELS === */
 .glass-panel {
-  background: var(--bg-glass) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
-  border-radius: 24px;
-  color: var(--text-main) !important;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  background: var(--bg-glass) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border); border-radius: 24px; color: var(--text-main) !important;
+  padding: clamp(1.5rem, 4vw, 3rem); box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
 /* === 6. FLOATING UI (HUD & THEME TOGGLE) === */
 .global-progress-hud {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  padding: 12px 25px !important;
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  z-index: 1000;
-  font-weight: 800;
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--primary) !important;
-  border-radius: 50px !important;
+  position: fixed; bottom: 25px; right: 25px; padding: 12px 25px !important;
+  display: flex; gap: 15px; align-items: center; z-index: 1000; font-weight: 800;
+  background: var(--bg-glass); backdrop-filter: blur(10px);
+  border: 2px solid var(--primary) !important; border-radius: 50px !important;
   box-shadow: 0 10px 30px var(--primary-glow) !important;
   animation: slideUpHUD 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+.hud-sep { width: 2px; height: 20px; background: var(--card-border); }
 
 .theme-toggle {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--primary);
-  color: var(--text-main);
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 10px 30px var(--primary-glow);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed; bottom: 25px; left: 25px; width: 55px; height: 55px; border-radius: 50%;
+  background: var(--bg-glass); backdrop-filter: blur(10px); border: 2px solid var(--primary);
+  color: var(--text-main); font-size: 1.5rem; cursor: pointer; z-index: 1000;
+  box-shadow: 0 10px 30px var(--primary-glow); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; align-items: center; justify-content: center;
 }
+.theme-toggle:hover { transform: scale(1.15) rotate(15deg); background: var(--primary); color: #ffffff; }
 
-.theme-toggle:hover {
-  transform: scale(1.15) rotate(15deg);
-  background: var(--primary);
-  color: #ffffff;
-}
-
-@keyframes slideUpHUD {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+@keyframes slideUpHUD { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 /* === 7. COMPONENTS (TABLES, QUIZ, CODE) === */
 .btn-back {
-  display: inline-block;
-  padding: 10px 20px;
-  background: var(--primary);
-  color: #ffffff !important;
-  text-decoration: none;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  box-shadow: 0 4px 15px var(--primary-glow);
-  transition: 0.2s;
+  display: inline-block; padding: 10px 20px; background: var(--primary); color: #ffffff !important;
+  text-decoration: none; border-radius: 8px; margin-bottom: 20px; font-weight: bold;
+  box-shadow: 0 4px 15px var(--primary-glow); transition: 0.2s;
 }
 .btn-back:hover { transform: translateY(-3px); }
 
@@ -218,28 +140,50 @@ table { width: 100%; min-width: 600px; border-collapse: collapse; background: va
 th { background: var(--primary); color: white; padding: 15px; text-align: left; }
 td { padding: 15px; border-bottom: 1px solid var(--card-border); }
 
-.quiz-question { margin-bottom: 30px; padding: 25px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; }
+/* Інтерактивний тест (Quiz) */
+.quiz-question { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.quiz-question p { margin-top: 0; font-weight: 500; }
 .quiz-btn {
-  display: block; width: 100%; text-align: left; padding: 15px 20px;
-  margin: 10px 0; border-radius: 10px; border: 1px solid var(--card-border);
-  background: var(--bg-main); color: var(--text-main); cursor: pointer; transition: 0.2s; font-size: 1rem;
+  display: block; width: 100%; margin: 8px 0; padding: 12px 18px; border: 1.5px solid var(--card-border);
+  border-radius: 10px; background: var(--card-bg); color: var(--text-main); font-size: 1rem;
+  font-family: inherit; cursor: pointer; text-align: left;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
 }
-.quiz-btn:hover { border-color: var(--primary); transform: translateX(5px); }
-.correct { background: var(--success) !important; color: white !important; border-color: var(--success); }
-.wrong { background: var(--danger) !important; color: white !important; border-color: var(--danger); }
+.quiz-btn:hover:not(:disabled) { border-color: var(--primary); transform: translateX(4px); }
+.quiz-btn:disabled { cursor: default; opacity: 0.85; }
+.quiz-btn.correct { background: rgba(16, 185, 129, 0.12); border-color: var(--success); color: var(--success); font-weight: 600; }
+.quiz-btn.wrong { background: rgba(239, 68, 68, 0.1); border-color: var(--danger); color: var(--danger); }
 
+/* Копіювання коду */
 pre { position: relative; padding: 20px; background: var(--terminal-bg) !important; border-radius: 12px; border: 1px solid var(--card-border); overflow-x: auto; }
 .copy-btn {
   position: absolute; top: 10px; right: 10px; padding: 6px 12px;
   background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-  color: #f8fafc; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: 0.2s;
+  color: #f8fafc; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; backdrop-filter: blur(4px);
 }
 .copy-btn:hover { background: var(--primary); border-color: var(--primary); }
 
-/* === 8. MOBILE DEAD ZONE FIX === */
+/* === 8. TOAST NOTIFICATIONS === */
+#toast-container {
+  position: fixed; bottom: 90px; right: 20px; z-index: 99999; display: flex; flex-direction: column-reverse;
+  gap: 10px; pointer-events: none;
+}
+.toast {
+  padding: 12px 18px; border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: #fff;
+  opacity: 1; transform: translateX(0); transition: opacity 0.4s ease, transform 0.4s ease;
+  max-width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); pointer-events: auto;
+}
+.toast-success { background: linear-gradient(135deg, var(--success), #059669); }
+.toast-error   { background: linear-gradient(135deg, var(--danger), #dc2626); }
+
+/* === 9. MOBILE ADAPTABILITY === */
 @media (max-width: 768px) {
-  body { padding-bottom: 100px; }
-  .theme-toggle { bottom: 15px; left: 15px; width: 45px; height: 45px; font-size: 1.2rem; }
-  .global-progress-hud { bottom: 15px; right: 15px; padding: 10px 15px !important; font-size: 0.85rem; max-width: calc(100vw - 80px); }
-  .hud-sep { height: 15px; }
+  .grid-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  body { padding-bottom: 120px; } /* Запобігає перекриттю контенту */
+  .theme-toggle { bottom: 16px; left: 12px; width: 42px; height: 42px; font-size: 1.1rem; }
+  .global-progress-hud { bottom: 16px; right: 12px; padding: 10px 15px !important; max-width: calc(60vw - 20px); font-size: 0.85rem; }
+  #toast-container { right: 12px; left: 12px; bottom: 80px; align-items: center; }
+  .toast { max-width: 100%; text-align: center; }
 }
